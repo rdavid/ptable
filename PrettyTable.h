@@ -57,8 +57,9 @@ Enum& enum_increment(Enum& value, const Enum& first, const Enum& last)
 
 
 // Dummy type is used as default parameter for template CPrettyTable.
-class PrettyTableStubType
+struct PrettyTableStubType
 {
+  PrettyTableStubType() : buf{0} {}
   char buf[3];  // There is no native type with that size.
 };
 
@@ -390,7 +391,7 @@ class CPrettyTable : CNonCopyable
     if (caption.length() >= all-2)
     {
       out << '+' << caption << '+';
-      
+
       // Expands cell lengths to fit to the caption.
       unsigned int gap = caption.length()-all+2+1;
       if (gap >= lens.size())
@@ -414,7 +415,7 @@ class CPrettyTable : CNonCopyable
       {
         lens[0] += gap;
       }
-      
+
       return;
     }
 
@@ -455,7 +456,7 @@ int main()
 
   tbl.Sort(1);
   std::cerr << "Sort ascending\n" << tbl.Get() << '\n';
-  
+
   tbl.Sort(1, ePTSO_Descending);
   std::cerr << "Sort descending\n" << tbl.Get() << '\n';
 
