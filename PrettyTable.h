@@ -16,7 +16,7 @@
 
 #include "AlphaNum.h"
 
-//#define PRETTY_TABLE_DEBUG 1 
+//#define PRETTY_TABLE_DEBUG 1
 
 #ifdef PRETTY_TABLE_DEBUG
   #include <iostream>
@@ -59,7 +59,6 @@ Enum& enum_increment(Enum& value, const Enum& first, const Enum& last)
 // Dummy type is used as default parameter for template CPrettyTable.
 struct PrettyTableStubType
 {
-  PrettyTableStubType() : buf{0} {}
   char buf[3];  // There is no native type with that size.
 };
 
