@@ -29,6 +29,9 @@ jobs:
         # https://docs.github.com/en/github/finding-security-vulnerabilities-and-errors-in-your-code/configuring-code-scanning#overriding-automatic-language-detection
 
     steps:
+    - name: Install redo
+      run: sudo curl https://raw.githubusercontent.com/apenwarr/redo/main/minimal/do --output /bin/redo && sudo chmod a+x /bin/redo
+
     - name: Checkout repository
       uses: actions/checkout@v2
       with:
