@@ -1,3 +1,2 @@
-DEPS="main.o"
-redo-ifchange $DEPS
-g++ -o $3 $DEPS
+redo-ifchange main.cpp
+g++ -Wall -Werror -pedantic -o $3 main.cpp

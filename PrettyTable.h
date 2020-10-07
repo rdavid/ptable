@@ -455,7 +455,6 @@ int main()
     std::stringstream buf;
     buf << i << ' ' << std::string(i, 'F');
     tbl.SetCaption(buf.str().c_str());
-
     std::cerr << tbl.Get() << '\n';
   }
   std::cerr << "Resource consumption\n";
@@ -464,7 +463,7 @@ int main()
     tbl.Add(k, std::string(1000, '+').c_str(), 0, "looooooooooooong string");
   }
   tbl.Clear();
-  std::cerr << tbl.Get() << '\n';
+  std::cerr << tbl.Get() << "\nDone.\n";
   return 0;
 }
 #endif  //  PRETTY_TABLE_DEBUG
