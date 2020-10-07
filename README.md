@@ -10,8 +10,8 @@ formatted table. It calculates indentations after all fields are known. There is
 example code:
 ```
 CPrettyTable<int, const char*, double> tbl("num", "name", "score");
-for (int i=0; i < 5; ++i) {
-  tbl.Add(i+1, "FooBar", 2.5*(i+1));
+for (int i = 0; i < 5; ++i) {
+  tbl.Add(i + 1, "FooBar", 2.5 * (i + 1));
 }
 tbl.SetCaption("FooBar");
 tbl.Dump(std::cerr);

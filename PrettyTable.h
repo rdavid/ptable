@@ -75,8 +75,8 @@ std::ostream& operator<<(std::ostream& os, const PrettyTableStubType&);
 // after all fields are known. There is example code:
 //
 // CPrettyTable<int, const char*, double> tbl("num", "name", "score");
-// for (int i=0; i < 5; ++i)
-//   tbl.Add(i+1, "FooBar", 2.5*(i+1));
+// for (int i = 0; i < 5; ++i)
+//   tbl.Add(i + 1, "FooBar", 2.5 * (i + 1));
 // tbl.SetCaption("FooBar");
 // tbl.Dump(std::cerr);
 //
@@ -142,13 +142,10 @@ class CPrettyTable : CNonCopyable
         p01, p02, p03, p04, p05, p06, p07, p08, p09, p10,
         p11, p12, p13, p14, p15, p16, p17, p18, p19, p20
     };
-
     std::vector<Val> row;
     row.reserve(ARRAYSIZE(names));
-
     for (const char** name = names; name != ARRAYEND(names) && NULL != *name; ++name)
       row.push_back(std::make_pair(*name, false));
-
     m_db.push_back(row);
   }
 
@@ -177,7 +174,6 @@ class CPrettyTable : CNonCopyable
   {
     std::vector<Val> row;
     row.reserve(20);
-
     AddCell(row, p01);
     AddCell(row, p02);
     AddCell(row, p03);
@@ -198,7 +194,6 @@ class CPrettyTable : CNonCopyable
     AddCell(row, p18);
     AddCell(row, p19);
     AddCell(row, p20);
-
     m_db.push_back(row);
   }
 
@@ -207,7 +202,7 @@ class CPrettyTable : CNonCopyable
     if (IsEmpty())
       return 0;
 
-    return m_db.size()-1;
+    return m_db.size() - 1;
   }
 
   bool IsEmpty() const
@@ -256,7 +251,6 @@ class CPrettyTable : CNonCopyable
           lens[pos] = col->first.length();
       }
     }
-
     if (lens.empty())
       return;
 
@@ -290,7 +284,6 @@ class CPrettyTable : CNonCopyable
     DB title;
     if (m_has_header)
       title.splice(title.begin(), m_db, m_db.begin());
-
     m_db.sort(RowCmp(col, order));
 
     // Moves the title back.
@@ -311,7 +304,6 @@ class CPrettyTable : CNonCopyable
 
       // Uses alpha numeric comparator to get more human results.
       int res = doj::alphanum_comp(lhs[m_col].first, rhs[m_col].first);
-
       return (ePTSO_Ascending == m_order) ? res < 0 : res >= 0;
     }
 
@@ -387,16 +379,17 @@ class CPrettyTable : CNonCopyable
       std::accumulate(lens.begin(), lens.end(), 2+dsz*lens.size());
 
     // 2 is for two '+' by sides
-    if (caption.length() >= all-2)
+    if (caption.length() >= all - 2)
     {
       out << '+' << caption << '+';
 
       // Expands cell lengths to fit to the caption.
-      unsigned int gap = caption.length()-all+2+1;
+      unsigned int gap = caption.length() - all + 2 + 1;
       if (gap >= lens.size())
       {
-        unsigned int pad = gap/lens.size();
-        unsigned int pa0 = (0 != (gap%lens.size())) ? pad+gap%lens.size() : pad;
+        unsigned int pad = gap / lens.size();
+        unsigned int pa0 =
+          (0 != (gap % lens.size())) ? pad + gap % lens.size() : pad;
         lens[0] += pa0;
 
         // Adds the pad to each column.
@@ -414,7 +407,6 @@ class CPrettyTable : CNonCopyable
       {
         lens[0] += gap;
       }
-
       return;
     }
 
@@ -424,7 +416,7 @@ class CPrettyTable : CNonCopyable
 
     // Injects the caption to the prepared string.
     std::string line = bu2.str();
-    unsigned int gap = (all-caption.length())/2;
+    unsigned int gap = (all - caption.length()) / 2;
     out << std::string(line, 0, gap)
         << caption
         << std::string(line, gap+caption.length());
@@ -445,22 +437,17 @@ int main()
 {
   CPrettyTable<int, const char*, double, const char*>
     tbl("num", "name", "score", "value");
-
   for (int j = 0; j < 20; ++j)
   {
     std::stringstream buf;
-    buf << "foo-" << j << '-' << (char)'a'+j << "-bar-" << 20-j;
-    tbl.Add(j, buf.str().c_str(), j*2.5, "looooooooooooong string");
+    buf << "foo-" << j << '-' << (char)'a' + j << "-bar-" << 20 - j;
+    tbl.Add(j, buf.str().c_str(), j * 2.5, "looooooooooooong string");
   }
-
   tbl.Sort(1);
   std::cerr << "Sort ascending\n" << tbl.Get() << '\n';
-
   tbl.Sort(1, ePTSO_Descending);
   std::cerr << "Sort descending\n" << tbl.Get() << '\n';
-
   tbl.Clear();
-
   std::cerr << "Caption\n";
   tbl.Add(100, "short", 0, "long");
   for (int i = 0; i < 30; ++i)
@@ -471,16 +458,13 @@ int main()
 
     std::cerr << tbl.Get() << '\n';
   }
-
   std::cerr << "Resource consumption\n";
   for (int k = 0; k < 20000; ++k)
   {
     tbl.Add(k, std::string(1000, '+').c_str(), 0, "looooooooooooong string");
   }
-
   tbl.Clear();
   std::cerr << tbl.Get() << '\n';
-
   return 0;
 }
 #endif  //  PRETTY_TABLE_DEBUG
