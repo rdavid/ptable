@@ -31,7 +31,7 @@ template <typename T, size_t size>
 char (&arraysize_helper(T (&)[size]))[size];
 
 #define ARRAYSIZE(arr) (sizeof(arraysize_helper(arr)))
-#define ARRAYEND(arr) ((arr)+ARRAYSIZE(arr))
+#define ARRAYEND(arr) ((arr) + ARRAYSIZE(arr))
 
 // A class to disallow the copy constructor and operator= functions.
 // Private copy constructor and copy assignment ensure classes derived from
@@ -144,7 +144,9 @@ class CPrettyTable : CNonCopyable
     };
     std::vector<Val> row;
     row.reserve(ARRAYSIZE(names));
-    for (const char** name = names; name != ARRAYEND(names) && NULL != *name; ++name)
+    for (const char** name = names;
+         name != ARRAYEND(names) && NULL != *name;
+         ++name)
       row.push_back(std::make_pair(*name, false));
     m_db.push_back(row);
   }
@@ -276,7 +278,7 @@ class CPrettyTable : CNonCopyable
     PrintDelimeter(lens, out);
   }
 
-  // Sorts table by certain column. First column has 0 col value. There is CPU 
+  // Sorts table by certain column. First column has 0 col value. There is CPU
   // consuming operation, do not use it when CPU productivity is critical.
   void Sort(unsigned int col, ePrettyTableSortOrder order = ePTSO_Ascending)
   {
@@ -334,7 +336,7 @@ class CPrettyTable : CNonCopyable
                  std::ostream& out) const
   {
     out << std::endl << '|';
-    std::vector<Val>::const_iterator          col = row.begin();
+    std::vector<Val>::const_iterator col = row.begin();
     std::vector<unsigned int>::const_iterator len = lens.begin();
     for ( ; col != row.end() && len != lens.end(); ++col, ++len)
       out << " "
@@ -349,7 +351,7 @@ class CPrettyTable : CNonCopyable
     out << std::endl << '+';
     std::vector<unsigned int>::const_iterator len;
     for (len = lens.begin(); len != lens.end(); ++len)
-      out << std::string(*len+2, '-') << '+';
+      out << std::string(*len + 2, '-') << '+';
   }
 
   // Caption is embedded to the first line delimeter as following
@@ -376,7 +378,7 @@ class CPrettyTable : CNonCopyable
     // Width of the table includes delimeter size for each column and '+' on
     // each border.
     unsigned int all =
-      std::accumulate(lens.begin(), lens.end(), 2+dsz*lens.size());
+      std::accumulate(lens.begin(), lens.end(), 2 + dsz * lens.size());
 
     // 2 is for two '+' by sides
     if (caption.length() >= all - 2)
@@ -423,11 +425,11 @@ class CPrettyTable : CNonCopyable
   }
 
   typedef std::pair<std::string, bool> Val;
-  typedef std::vector<Val>             Raw;
-  typedef std::list<Raw>               DB;
+  typedef std::vector<Val> Raw;
+  typedef std::list<Raw> DB;
 
-  DB          m_db;
-  bool        m_has_header;
+  DB m_db;
+  bool m_has_header;
   std::string m_caption;
 };
 

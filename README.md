@@ -31,5 +31,5 @@ The code prints following line to standard error stream:
 Build and run test application: `redo ptable && ./ptable`. Install
 [Daniel J. Bernstein's redo build system](http://cr.yp.to/redo.html) program by: `brew install redo`.
 ## License
-The scripts are copyright [David Rabkin](http://davi.drabk.in) and
+PTable is copyright [David Rabkin](http://davi.drabk.in) and
 available under a [2-Claus BSD license](https://github.com/rdavid/ptable/blob/master/LICENSE).
