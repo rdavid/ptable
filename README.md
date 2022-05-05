@@ -1,8 +1,5 @@
-# PTable
-C++ realization of CPrettyTable template class
-
-[![Hits-of-Code](https://hitsofcode.com/github/rdavid/ptable?branch=master)](https://hitsofcode.com/view/github/rdavid/ptable?branch=master)
-[![License](https://img.shields.io/badge/license-0BSD-green)](https://github.com/rdavid/ptable/blob/master/LICENSE)
+# PTable [![Hits-of-Code](https://hitsofcode.com/github/rdavid/ptable?branch=master)](https://hitsofcode.com/view/github/rdavid/ptable?branch=master) [![License](https://img.shields.io/badge/license-0BSD-green)](https://github.com/rdavid/ptable/blob/master/LICENSE)
+C++ realization of CPrettyTable template class.
 
 * [About](#about)
 * [License](#license)
