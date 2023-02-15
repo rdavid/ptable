@@ -1,4 +1,4 @@
-## PTable [![Hits-of-Code](https://hitsofcode.com/github/rdavid/ptable?branch=master)](https://hitsofcode.com/view/github/rdavid/ptable?branch=master) [![License](https://img.shields.io/badge/license-0BSD-green)](https://github.com/rdavid/ptable/blob/master/LICENSE)
+## PTable [![hits of code](https://hitsofcode.com/github/rdavid/ptable?branch=master&label=hits%20of%20code)](https://hitsofcode.com/view/github/rdavid/ptable?branch=master) [![license](https://img.shields.io/github/license/rdavid/shellbase?color=blue&labelColor=gray&logo=freebsd&logoColor=lightgray&style=flat)](https://github.com/rdavid/ptable/blob/master/LICENSE)
 C++ realization of `CPrettyTable` template class.
 
 * [About](#about)
@@ -11,7 +11,7 @@ example code:
 ```c++
 CPrettyTable<int, const char*, double> tbl("num", "name", "score");
 for (int i = 0; i < 5; ++i) {
-	tbl.Add(i + 1, "FooBar", 2.5 * (i + 1));
+	tbl.Add(i+1, "FooBar", 2.5*(i+1));
 }
 tbl.SetCaption("FooBar");
 tbl.Dump(std::cerr);
@@ -31,10 +31,11 @@ The code prints following line to standard error stream:
 ### Build and run
 The project uses Daniel J. Bernstein's (aka, djb)
 [build system](http://cr.yp.to/redo.html). You can install Sergey Matveev's
-[goredo implementation](http://www.goredo.cypherpunks.ru/Install.html).
+[`goredo`](http://www.goredo.cypherpunks.ru/Install.html) implementation.
 ```sh
-redo ptable && ./ptable
+redo ptable &&
+	ptable
 ```
 ### License
-PTable is copyright [David Rabkin](http://cv.rabkin.co.il) and
+`ptable` is copyright [David Rabkin](http://cv.rabkin.co.il) and
 available under a [Zero-Claus BSD license](https://github.com/rdavid/ptable/blob/master/LICENSE).
