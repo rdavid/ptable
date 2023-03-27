@@ -33,7 +33,7 @@ jobs:
       run: sudo curl https://raw.githubusercontent.com/apenwarr/redo/main/minimal/do --output /bin/redo && sudo chmod a+x /bin/redo
 
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         # We must fetch at least the immediate parents so that if this is
         # a pull request then we can checkout the head.
