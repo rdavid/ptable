@@ -1,22 +1,29 @@
-# PTable [![code ql](https://github.com/rdavid/ptable/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/rdavid/ptable/actions/workflows/codeql-analysis.yml) [![hits of code](https://hitsofcode.com/github/rdavid/ptable?branch=master&label=hits%20of%20code)](https://hitsofcode.com/view/github/rdavid/ptable?branch=master) [![license](https://img.shields.io/github/license/rdavid/shellbase?color=blue&labelColor=gray&logo=freebsd&logoColor=lightgray&style=flat)](https://github.com/rdavid/ptable/blob/master/LICENSE)
-C++ realization of `CPrettyTable` template class.
+# PTable
+
+[![code ql](https://github.com/rdavid/ptable/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/rdavid/ptable/actions/workflows/codeql-analysis.yml)
+[![linters](https://github.com/rdavid/ptable/actions/workflows/lint.yml/badge.svg)](https://github.com/rdavid/ptable/actions/workflows/lint.yml)
+[![hits of code](https://hitsofcode.com/github/rdavid/ptable?branch=master&label=hits%20of%20code)](https://hitsofcode.com/view/github/rdavid/ptable?branch=master)
+[![license](https://img.shields.io/github/license/rdavid/shellbase?color=blue&labelColor=gray&logo=freebsd&logoColor=lightgray&style=flat)](https://github.com/rdavid/ptable/blob/master/LICENSE)
 
 * [About](#about)
 * [License](#license)
 
 ## About
-Hi, I'm [David Rabkin](http://cv.rabkin.co.il). This C++ template prints data in
-formatted table. It calculates indentations after all fields are known. There is
-example code:
+
+The C++ template prints data in formatted table. It calculates indentations
+after all fields are known. There is an example code:
+
 ```c++
 CPrettyTable<int, const char*, double> tbl("num", "name", "score");
 for (int i = 0; i < 5; ++i) {
-	tbl.Add(i+1, "FooBar", 2.5*(i+1));
+  tbl.Add(i+1, "FooBar", 2.5*(i+1));
 }
 tbl.SetCaption("FooBar");
 tbl.Dump(std::cerr);
 ```
+
 The code prints following line to standard error stream:
+
 ```sh
 +-----+[ FooBar ]------+
 | num | name   | score |
@@ -30,15 +37,18 @@ The code prints following line to standard error stream:
 ```
 
 ## Build and run
+
 The project uses Daniel J. Bernstein's (aka, djb) build system
 [`redo`](http://cr.yp.to/redo.html). You can install Sergey Matveev's
 [`goredo`](http://www.goredo.cypherpunks.ru/Install.html) implementation.
+
 ```sh
 redo ptable &&
-	ptable
+  ptable
 ```
 
 ## License
+
 `ptable` is copyright [David Rabkin](http://cv.rabkin.co.il) and available
 under a
 [Zero-Clause BSD license](https://github.com/rdavid/ptable/blob/master/LICENSE).
