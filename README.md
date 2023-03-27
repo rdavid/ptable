@@ -6,6 +6,7 @@
 [![license](https://img.shields.io/github/license/rdavid/shellbase?color=blue&labelColor=gray&logo=freebsd&logoColor=lightgray&style=flat)](https://github.com/rdavid/ptable/blob/master/LICENSE)
 
 * [About](#about)
+* [Build](#build)
 * [License](#license)
 
 ## About
@@ -36,15 +37,14 @@ The code prints following line to standard error stream:
 +-----+--------+-------+
 ```
 
-## Build and run
+## Build
 
 The project uses Daniel J. Bernstein's (aka, djb) build system
 [`redo`](http://cr.yp.to/redo.html). You can install Sergey Matveev's
 [`goredo`](http://www.goredo.cypherpunks.ru/Install.html) implementation.
 
 ```sh
-redo ptable &&
-  ptable
+redo ptable
 ```
 
 ## License
