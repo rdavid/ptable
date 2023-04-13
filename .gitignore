@@ -1,4 +1,6 @@
 .redo
+lint
 main.d
 main.o
 ptable
+test

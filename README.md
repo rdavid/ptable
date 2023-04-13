@@ -43,9 +43,15 @@ The project uses Daniel J. Bernstein's (aka, djb) build system
 [`redo`](http://cr.yp.to/redo.html). You can install Sergey Matveev's
 [`goredo`](http://www.goredo.cypherpunks.ru/Install.html) implementation.
 
-```sh
-redo ptable
-```
+`redo lint` runs the following linters on the source files:
+
+* [`checkmake`](https://github.com/mrtazz/checkmake)
+* [`markdownlint`](https://github.com/igorshubovych/markdownlint-cli)
+* [`shellcheck`](https://github.com/koalaman/shellcheck)
+* [`shfmt`](https://github.com/mvdan/sh)
+* [`yamllint`](https://github.com/adrienverge/yamllint)
+
+`redo test` runs unit tests.
 
 ## License
 
