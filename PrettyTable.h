@@ -13,11 +13,8 @@
 #include <iterator>
 #include <algorithm>
 #include <functional>
-
 #include "AlphaNum.h"
-
 //#define PRETTY_TABLE_DEBUG 1
-
 #ifdef PRETTY_TABLE_DEBUG
   #include <iostream>
 #endif
