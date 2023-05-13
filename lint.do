@@ -1,7 +1,7 @@
 # shellcheck shell=sh
 # vi:et lbr noet sw=2 ts=2 tw=79 wrap
 # Copyright 2023 David Rabkin
-redo-ifchange ./*.md .github/*.yml .github/workflows/*.yml Makefile
+redo-ifchange .github/workflows/*.yml .github/*.yml ./Makefile ./*.md
 
 # shellcheck disable=SC1091 # File not following.
 . base.sh
