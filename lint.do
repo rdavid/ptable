@@ -10,9 +10,11 @@ validate_cmd \
 	markdownlint \
 	shellcheck \
 	shfmt \
+	typos \
 	yamllint
 checkmake Makefile
 markdownlint ./*.md
 shellcheck ./*.do
 shfmt -d ./*.do
+typos
 yamllint .github/*.yml .github/workflows/*.yml

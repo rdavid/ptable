@@ -49,6 +49,7 @@ The project uses Daniel J. Bernstein's (aka, djb) build system
 * [`markdownlint`](https://github.com/igorshubovych/markdownlint-cli)
 * [`shellcheck`](https://github.com/koalaman/shellcheck)
 * [`shfmt`](https://github.com/mvdan/sh)
+* [`typos`](https://github.com/crate-ci/typos)
 * [`yamllint`](https://github.com/adrienverge/yamllint)
 
 `redo test` runs unit tests.

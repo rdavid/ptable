@@ -253,18 +253,18 @@ class CPrettyTable : CNonCopyable
     if (lens.empty())
       return;
 
-    // The first line, PrintDelimeter starts with '\n'.
+    // The first line, PrintDelimiter starts with '\n'.
     if (!m_caption.empty())
       PrintCaption(lens, out);
     else
-      PrintDelimeter(lens, out);
+      PrintDelimiter(lens, out);
 
     // Titles, PrintRow starts with a new line, there is '\n'.
     PrintRow(*m_db.begin(), lens, out);
 
     // The line after the title.
     if (m_has_header)
-      PrintDelimeter(lens, out);
+      PrintDelimiter(lens, out);
 
     // Other lines.
     row = m_db.begin();
@@ -272,7 +272,7 @@ class CPrettyTable : CNonCopyable
       PrintRow(*row, lens, out);
 
     // The last line.
-    PrintDelimeter(lens, out);
+    PrintDelimiter(lens, out);
   }
 
   // Sorts table by certain column. First column has 0 col value. There is CPU
@@ -342,7 +342,7 @@ class CPrettyTable : CNonCopyable
           << col->first << " |";
   }
 
-  void PrintDelimeter(const std::vector<unsigned int>& lens,
+  void PrintDelimiter(const std::vector<unsigned int>& lens,
                       std::ostream& out) const
   {
     out << std::endl << '+';
@@ -351,7 +351,7 @@ class CPrettyTable : CNonCopyable
       out << std::string(*len + 2, '-') << '+';
   }
 
-  // Caption is embedded to the first line delimeter as following
+  // Caption is embedded to the first line delimiter as following
   // +----+-[ FooBar ]-------+
   void PrintCaption(std::vector<unsigned int>& lens,
                     std::ostream& out) const
@@ -372,7 +372,7 @@ class CPrettyTable : CNonCopyable
     buf << "-[ " << m_caption << " ]-";
     std::string caption = buf.str();
 
-    // Width of the table includes delimeter size for each column and '+' on
+    // Width of the table includes delimiter size for each column and '+' on
     // each border.
     unsigned int all =
       std::accumulate(lens.begin(), lens.end(), 2 + dsz * lens.size());
@@ -409,9 +409,9 @@ class CPrettyTable : CNonCopyable
       return;
     }
 
-    // Prepares regular delimeter without the caption.
+    // Prepares regular delimiter without the caption.
     std::stringstream bu2;
-    PrintDelimeter(lens, bu2);
+    PrintDelimiter(lens, bu2);
 
     // Injects the caption to the prepared string.
     std::string line = bu2.str();
