@@ -11,8 +11,9 @@
 
 ## About
 
-The C++ template prints data in formatted table. It calculates indentations
-after all fields are known. There is an example code:
+The C++ template is used to print data in a formatted table.
+It calculates the proper indentations once all the fields are known.
+Here is an example code snippet to demonstrate its usage:
 
 ```c++
 CPrettyTable<int, const char*, double> tbl("num", "name", "score");
