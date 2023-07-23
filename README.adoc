@@ -39,9 +39,7 @@ for (int i = 0; i < 5; ++i) {
 tbl.SetCaption("FooBar");
 tbl.Dump(std::cerr);
 ----
-
-The code prints following line to standard error stream:
-
+The code prints the following line to the standard error stream.
 [,sh]
 ----
 +-----+[ FooBar ]------+
