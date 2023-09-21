@@ -1,8 +1,6 @@
 ---
 name: codeql
-'on':
-  pull_request:
-    branches: [master]
+'on': push
 env:
   BASE_SRC: https://github.com/rdavid/shellbase/archive/refs/tags/v0.9.20230808.tar.gz # yamllint disable-line
   REDO_BIN: /usr/local/bin/redo
