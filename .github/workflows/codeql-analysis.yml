@@ -3,6 +3,10 @@ name: codeql
 'on':
   pull_request:
     branches: [master]
+env:
+  BASE_SRC: https://github.com/rdavid/shellbase/archive/refs/tags/v0.9.20230808.tar.gz # yamllint disable-line
+  REDO_BIN: /usr/local/bin/redo
+  REDO_URL: https://raw.githubusercontent.com/apenwarr/redo/main/minimal/do
 jobs:
   analyze:
     name: analyze
@@ -12,12 +16,17 @@ jobs:
       matrix:
         language: ['cpp']
     steps:
-      - name: install redo
+      - name: install software
         run: |
-          sudo curl \
-            --output /bin/redo \
-            https://raw.githubusercontent.com/apenwarr/redo/main/minimal/do \
-          && sudo chmod a+x /bin/redo
+          curl --location --silent $BASE_SRC |
+            tar \
+              --directory /usr/local/bin \
+              --extract \
+              --gzip \
+              --strip-components=2 \
+              shellbase-0.9.20230808/lib/base.sh
+          curl --location --output $REDO_BIN --silent $REDO_URL
+          chmod +x $REDO_BIN
       - uses: actions/checkout@v3
       - uses: github/codeql-action/init@v2
         with:
