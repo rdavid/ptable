@@ -27,7 +27,7 @@ jobs:
               shellbase-0.9.20230808/lib/base.sh
           curl --location --output $REDO_BIN --silent $REDO_URL
           chmod +x $REDO_BIN
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: github/codeql-action/init@v2
         with:
           languages: ${{ matrix.language }}
