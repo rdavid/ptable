@@ -62,9 +62,8 @@ You can install Sergey Matveev's {url-goredo}[`goredo`] implementation.
 
 `redo test` runs unit tests.
 `redo lint` applies the following linters to the source files:
-{url-checkmake}[`checkmake`], {url-hadolint}[`hadolint`],
-{url-shellcheck}[`shellcheck`], {url-shfmt}[`shfmt`], {url-typos}[`typos`],
-{url-vale}[`vale`], {url-yamllint}[`yamllint`].
+{url-checkmake}[`checkmake`], {url-shellcheck}[`shellcheck`],
+{url-shfmt}[`shfmt`], {url-typos}[`typos`], {url-yamllint}[`yamllint`].
 
 == License
 
