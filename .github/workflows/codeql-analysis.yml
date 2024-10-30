@@ -2,7 +2,7 @@
 name: codeql
 'on': push
 env:
-  BASE_SRC: https://github.com/rdavid/shellbase/archive/refs/tags/v0.9.20231212.tar.gz # yamllint disable-line
+  BASE_SRC: https://github.com/rdavid/shellbase/archive/refs/tags/v0.9.20240909.tar.gz # yamllint disable-line
   REDO_BIN: /usr/local/bin/redo
   REDO_URL: https://raw.githubusercontent.com/apenwarr/redo/main/minimal/do
 jobs:
@@ -22,7 +22,7 @@ jobs:
               --extract \
               --gzip \
               --strip-components=2 \
-              shellbase-0.9.20231212/lib/base.sh
+              shellbase-0.9.20240909/lib/base.sh
           curl --location --output $REDO_BIN --silent $REDO_URL
           chmod +x $REDO_BIN
       - uses: actions/checkout@v4
