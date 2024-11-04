@@ -34,7 +34,7 @@ Here is an example code snippet to demonstrate its usage:
 ----
 CPrettyTable<int, const char*, double> tbl("num", "name", "score");
 for (int i = 0; i < 5; ++i) {
-  tbl.Add(i+1, "FooBar", 2.5*(i+1));
+  tbl.Add(i + 1, "FooBar", 2.5 * (i + 1));
 }
 tbl.SetCaption("FooBar");
 tbl.Dump(std::cerr);
