@@ -19,21 +19,22 @@
   #include <iostream>
 #endif
 
-// 1. The function gets a reference to an array as a parameter
-// 2. The return value of the function is the reference to a char array
-// 3. The function doesn't have a definition, it is never called
-// 4. The reference to an array keeps the size of the array
-// 5. sizeof operator returns the size of the char array
+// 1. The function receives a reference to an array as its parameter.
+// 2. It returns a reference to a char array as its output.
+// 3. The function lacks a definition and is never invoked.
+// 4. The reference to the array retains its size information.
+// 5. The `sizeof` operator correctly returns the size of the char array.
 template <typename T, size_t size>
 char (&arraysize_helper(T (&)[size]))[size];
 
 #define ARRAYSIZE(arr) (sizeof(arraysize_helper(arr)))
 #define ARRAYEND(arr) ((arr) + ARRAYSIZE(arr))
 
-// A class to disallow the copy constructor and operator= functions.
-// Private copy constructor and copy assignment ensure classes derived from
-// class CNonCopyable cannot be copied. Should be used as:
-// class CFooBar : CNonCopyable {};
+// A class designed to disable the copy constructor and copy assignment
+// operator. By making the copy constructor and assignment operator private,
+// any class derived from CNonCopyable becomes non-copyable.
+// Usage example:
+// class CFooBar : public CNonCopyable {};
 class CNonCopyable
 {
  protected:
