@@ -6,7 +6,7 @@
 :url-checkmake: https://github.com/mrtazz/checkmake
 :url-cv: http://cv.rabkin.co.il
 :url-hadolint: https://github.com/hadolint/hadolint
-:url-goredo: http://www.goredo.cypherpunks.ru/Install.html
+:url-goredo: http://www.goredo.cypherpunks.su/Install.html
 :url-license: https://github.com/rdavid/shellbase/blob/master/LICENSE
 :url-redo: http://cr.yp.to/redo.html
 :url-shellcheck: https://github.com/koalaman/shellcheck
