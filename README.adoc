@@ -9,6 +9,7 @@
 :url-goredo: http://www.goredo.cypherpunks.su/Install.html
 :url-license: https://github.com/rdavid/shellbase/blob/master/LICENSE
 :url-redo: http://cr.yp.to/redo.html
+:url-reuse: https://github.com/fsfe/reuse-action
 :url-shellcheck: https://github.com/koalaman/shellcheck
 :url-shfmt: https://github.com/mvdan/sh
 :url-typos: https://github.com/crate-ci/typos
@@ -62,8 +63,9 @@ You can install Sergey Matveev's {url-goredo}[`goredo`] implementation.
 
 `redo test` runs unit tests.
 `redo lint` applies the following linters to the source files:
-{url-checkmake}[`checkmake`], {url-shellcheck}[`shellcheck`],
-{url-shfmt}[`shfmt`], {url-typos}[`typos`], {url-yamllint}[`yamllint`].
+{url-checkmake}[`checkmake`], {url-reuse}[`reuse`],
+{url-shellcheck}[`shellcheck`], {url-shfmt}[`shfmt`], {url-typos}[`typos`],
+{url-yamllint}[`yamllint`].
 
 == License
 

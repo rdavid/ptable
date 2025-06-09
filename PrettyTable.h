@@ -1,4 +1,6 @@
 // PrettyTable.h
+// SPDX-FileCopyrightText: 2015-2025 David Rabkin
+// SPDX-License-Identifier: 0BSD
 
 #ifndef PRETTY_TABLE_H_
 #define PRETTY_TABLE_H_

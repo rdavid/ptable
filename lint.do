@@ -1,11 +1,13 @@
 # shellcheck shell=sh
 # vi:et lbr noet sw=2 ts=2 tw=79 wrap
-# Copyright 2023 David Rabkin
+# SPDX-FileCopyrightText: 2023-2025 David Rabkin
+# SPDX-License-Identifier: 0BSD
 redo-ifchange \
 	./*.do \
 	.github/workflows/*.yml \
 	.github/*.yml \
 	./Makefile
+set -- "$@" --quiet
 
 # shellcheck disable=SC1091 # File not following.
 . base.sh

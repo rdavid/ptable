@@ -1,3 +1,5 @@
+// SPDX-FileCopyrightText: 2008 Dirk Jagdmann <doj@cubic.org>
+// SPDX-License-Identifier: Zlib
 // AlphaNum.h
 
 #ifndef ALPHA_NUM_H_
