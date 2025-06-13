@@ -23,7 +23,7 @@
 :url-vale: https://vale.sh
 :url-yamllint: https://github.com/adrienverge/yamllint
 
-= PTable
+= Pretty Table
 
 image:{img-test}[test,link={url-test}]
 image:{img-code}[code ql,link={url-code}]
