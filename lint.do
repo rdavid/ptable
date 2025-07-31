@@ -11,6 +11,7 @@ set -- "$@" --quiet
 
 # shellcheck disable=SC1091 # File not following.
 . base.sh
+cmd_exists actionlint && actionlint
 cmd_exists checkmake && checkmake Makefile
 cmd_exists shellcheck && shellcheck ./*.do
 cmd_exists shfmt && shfmt -d ./*.do
