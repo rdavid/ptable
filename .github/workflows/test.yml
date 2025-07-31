@@ -12,15 +12,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: |
-          curl --location --output $CM_BIN --silent $CM_URL
-          chmod +x $CM_BIN
+          curl --location --output "$CM_BIN" --silent "$CM_URL"
+          chmod +x "$CM_BIN"
           $CM_BIN Makefile
       - uses: fsfe/reuse-action@v5
       - uses: ludeeus/action-shellcheck@master
         with:
           additional_files: ./*.do
       - uses: mfinelli/setup-shfmt@v3
-      - run: shfmt -d *.do
+      - run: shfmt -d ./*.do
       - uses: crate-ci/typos@master
       - uses: ibiqlik/action-yamllint@v3
         with:

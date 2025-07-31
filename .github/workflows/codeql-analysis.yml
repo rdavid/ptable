@@ -18,15 +18,15 @@ jobs:
     steps:
       - name: install software
         run: |
-          curl --location --silent $BASE_SRC |
+          curl --location --silent "$BASE_SRC" |
             tar \
               --directory /usr/local/bin \
               --extract \
               --gzip \
               --strip-components=2 \
               shellbase-0.9.20250404/lib/base.sh
-          curl --location --output $REDO_BIN --silent $REDO_URL
-          chmod +x $REDO_BIN
+          curl --location --output "$REDO_BIN" --silent "$REDO_URL"
+          chmod +x "$REDO_BIN"
       - uses: actions/checkout@v4
       - uses: github/codeql-action/init@v3
         with:
