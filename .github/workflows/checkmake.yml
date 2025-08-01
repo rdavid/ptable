@@ -1,0 +1,24 @@
+# SPDX-FileCopyrightText: 2025 David Rabkin
+# SPDX-License-Identifier: 0BSD
+---
+name: checkmake
+'on':
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+env:
+  CM_BIN: /usr/local/bin/checkmake
+  CM_URL: https://github.com/mrtazz/checkmake/releases/download/0.2.2/checkmake-0.2.2.linux.amd64 # yamllint disable-line
+jobs:
+  checkmake:
+    timeout-minutes: 15
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          curl --location --output "$CM_BIN" --silent "$CM_URL"
+          chmod +x "$CM_BIN"
+          "$CM_BIN" Makefile
