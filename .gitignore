@@ -1,6 +1,6 @@
 .redo
+app
 lint
 main.d
 main.o
-ptable
 test

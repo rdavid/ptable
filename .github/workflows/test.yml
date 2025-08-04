@@ -31,8 +31,8 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install gcc --yes
-          g++ -std=c++03 -Wall -Werror -pedantic -o ptable main.cpp
-          ./ptable
+          g++ -std=c++03 -Wall -Werror -pedantic -o app main.cpp
+          ./app
       - if: runner.os == 'macOS'
         run: |
           brew install gcc goredo
