@@ -14,8 +14,8 @@ env:
   CM_URL: https://github.com/mrtazz/checkmake/releases/download/0.2.2/checkmake-0.2.2.linux.amd64 # yamllint disable-line
 jobs:
   checkmake:
-    timeout-minutes: 15
     runs-on: ubuntu-24.04
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v5
       - run: |
