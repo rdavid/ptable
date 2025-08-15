@@ -30,6 +30,7 @@ jobs:
           ./app
       - if: runner.os == 'macOS'
         run: |
+          brew update
           brew install gcc goredo
           curl --location --silent "$BASE_SRC" |
             tar \
