@@ -2,13 +2,7 @@
 # SPDX-License-Identifier: 0BSD
 ---
 name: checkmake
-'on':
-  push:
-    branches:
-      - master
-  pull_request:
-    branches:
-      - master
+'on': [pull_request, push]
 env:
   CM_BIN: /usr/local/bin/checkmake
   CM_URL: https://github.com/mrtazz/checkmake/releases/download/0.2.2/checkmake-0.2.2.linux.amd64 # yamllint disable-line
