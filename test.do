@@ -5,11 +5,11 @@
 redo-ifchange ./*.cpp ./*.h
 
 # std::bind2nd is deprecated in C++11 and removed in C++17. Use -std=c++03.
-g++ -std=c++03 -Wall -Werror -pedantic -o app main.cpp
+g++ -std=c++03 -Wall -Werror -pedantic -o ./app ./main.cpp
 if ./app 2>&1 >/dev/null | grep Done; then
-	printf success\\n
+	printf >&2 success\\n
 	exit 0
 else
-	printf failure\\n
+	printf >&2 failure\\n
 	exit 1
 fi
