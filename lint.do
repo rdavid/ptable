@@ -16,7 +16,7 @@ cmd_exists checkmake && checkmake ./Makefile
 cmd_exists shellcheck && shellcheck ./*.do
 cmd_exists shfmt && shfmt -d ./*.do
 cmd_exists typos && typos
+cmd_exists yamllint && yamllint ./.github/*.yml ./.github/workflows/*.yml
 
-# Gracefully handle missing tools without failing the script.
-# shellcheck disable=SC2015 # A && B || C is not if-then-else.
-cmd_exists yamllint && yamllint ./.github/*.yml ./.github/workflows/*.yml || :
+# Gracefully handle missing last tool without failing the script.
+:
