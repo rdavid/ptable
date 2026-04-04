@@ -32,9 +32,9 @@ toc::[]
 
 == About
 
-The C++ template is used to print data in a formatted table.
-It calculates the proper indentations once all the fields are known.
-Here is an example code snippet to demonstrate its usage:
+This C++ template formats and prints tabular data.
+It calculates column widths after all fields are known.
+The following snippet shows typical usage:
 
 [,c++]
 ----
@@ -45,7 +45,7 @@ for (int i = 0; i < 5; ++i) {
 tbl.SetCaption("FooBar");
 tbl.Dump(std::cerr);
 ----
-The code prints the following line to the standard error stream.
+The code prints the following output to the standard error stream:
 [,sh]
 ----
 +-----+[ FooBar ]------+
@@ -62,12 +62,12 @@ The code prints the following line to the standard error stream.
 == Build
 
 The project uses Daniel J. Bernstein's build system {url-redo}[`redo`].
-You can install Sergey Matveev's {url-goredo}[`goredo`] implementation.
+Install Sergey Matveev's {url-goredo}[`goredo`] implementation.
 
 == Test
 
 `redo test` runs unit tests.
-`redo lint` applies the following linters to the source files:
+`redo lint` runs the following linters on the source files:
 {url-actionlint}[`actionlint`],
 {url-checkmake}[`checkmake`],
 {url-reuse}[`reuse`],
@@ -78,5 +78,5 @@ You can install Sergey Matveev's {url-goredo}[`goredo`] implementation.
 
 == License
 
-`ptable` is copyright {url-cv}[David Rabkin] and available under a
+`ptable` is copyrighted by {url-cv}[David Rabkin] and available under the
 {url-license}[Zero-Clause BSD license].

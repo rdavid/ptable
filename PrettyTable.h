@@ -1,5 +1,5 @@
 // PrettyTable.h
-// SPDX-FileCopyrightText: 2015-2025 David Rabkin
+// SPDX-FileCopyrightText: 2015-2026 David Rabkin
 // SPDX-License-Identifier: 0BSD
 
 #ifndef PRETTY_TABLE_H_
@@ -50,16 +50,16 @@ class CNonCopyable
   void operator=(const CNonCopyable&);
 };
 
-// Allows iterations on an enum, as ++i
+// Allows iteration over an enum, for example with ++i.
 template <typename Enum>
 Enum& enum_increment(Enum& value, const Enum& first, const Enum& last)
 { return value = (value == last) ? first : static_cast<Enum>(value + 1); }
 
 
-// Dummy type is used as default parameter for template CPrettyTable.
+// Dummy type used as the default template parameter for CPrettyTable.
 struct PrettyTableStubType
 {
-  char buf[3];  // There is no native type with that size.
+  char buf[3];  // No native type has this exact size.
 };
 
 enum ePrettyTableSortOrder
@@ -68,11 +68,11 @@ enum ePrettyTableSortOrder
   ePTSO_Descending
 };
 
-// This function will not be called, but compiler needs it.
+// This function is never called, but the compiler requires it.
 std::ostream& operator<<(std::ostream& os, const PrettyTableStubType&);
 
-// This template prints data in formatted table. It calculates indentations
-// after all fields are known. There is example code:
+// This template formats and prints data as a table. It calculates column
+// widths after all fields are known. Example:
 //
 // CPrettyTable<int, const char*, double> tbl("num", "name", "score");
 // for (int i = 0; i < 5; ++i)
@@ -80,7 +80,7 @@ std::ostream& operator<<(std::ostream& os, const PrettyTableStubType&);
 // tbl.SetCaption("FooBar");
 // tbl.Dump(std::cerr);
 //
-// The code prints following line to standard error stream:
+// The code prints the following output to the standard error stream:
 // +-----+[ FooBar ]------+
 // | num | name   | score |
 // +-----+--------+-------+
@@ -113,10 +113,10 @@ template<typename T01=PrettyTableStubType,
 class CPrettyTable : CNonCopyable
 {
  public:
-  // Produces table without title.
+  // Creates a table without a header row.
   CPrettyTable() : m_has_header(false) {}
 
-  // Gets column titles as parameters.
+  // Accepts column titles as parameters.
   CPrettyTable(const char* p01,
                const char* p02 = NULL,
                const char* p03 = NULL,
@@ -256,39 +256,39 @@ class CPrettyTable : CNonCopyable
     if (lens.empty())
       return;
 
-    // The first line, PrintDelimiter starts with '\n'.
+    // The first line. PrintDelimiter starts with '\n'.
     if (!m_caption.empty())
       PrintCaption(lens, out);
     else
       PrintDelimiter(lens, out);
 
-    // Titles, PrintRow starts with a new line, there is '\n'.
+    // Header row. PrintRow starts with '\n'.
     PrintRow(*m_db.begin(), lens, out);
 
-    // The line after the title.
+    // Delimiter after the header row.
     if (m_has_header)
       PrintDelimiter(lens, out);
 
-    // Other lines.
+    // Data rows.
     row = m_db.begin();
     for (++row; row != m_db.end(); ++row)
       PrintRow(*row, lens, out);
 
-    // The last line.
+    // Final delimiter line.
     PrintDelimiter(lens, out);
   }
 
-  // Sorts table by certain column. First column has 0 col value. There is CPU
-  // consuming operation, do not use it when CPU productivity is critical.
+  // Sorts the table by the selected column (the first column index is 0).
+  // This operation can be CPU-intensive.
   void Sort(unsigned int col, ePrettyTableSortOrder order = ePTSO_Ascending)
   {
-    // Prevents the title from sorting.
+    // Keeps the header row out of sorting.
     DB title;
     if (m_has_header)
       title.splice(title.begin(), m_db, m_db.begin());
     m_db.sort(RowCmp(col, order));
 
-    // Moves the title back.
+    // Restores the header row.
     if (m_has_header)
       m_db.splice(m_db.begin(), title, title.begin());
   }
@@ -304,7 +304,7 @@ class CPrettyTable : CNonCopyable
       if (m_col >= lhs.size() || m_col >= rhs.size())
         return true;
 
-      // Uses alpha numeric comparator to get more human results.
+      // Uses an alphanumeric comparator for more human-friendly sorting.
       int res = doj::alphanum_comp(lhs[m_col].first, rhs[m_col].first);
       return (ePTSO_Ascending == m_order) ? res < 0 : res >= 0;
     }
@@ -317,16 +317,15 @@ class CPrettyTable : CNonCopyable
   template<typename T>
   void AddCell(std::vector<std::pair<std::string, bool> >& row, const T& p)
   {
-    // Distinguishes default parameter and caller's parameter.
+    // Distinguishes default arguments from caller-provided values.
     if (sizeof(PrettyTableStubType) == sizeof(T))
       return;
 
     std::ostringstream buf;
     buf << p;
 
-    // Each numeric type has is_specialized=true. It will be printed with
-    // right positioning of the fill characters. Other types, e.g. string,
-    // will be printed with left positioning.
+    // Numeric types have is_specialized=true, so they are right-aligned.
+    // Other types (for example strings) are left-aligned.
     row.push_back(std::make_pair(buf.str(),
                                  std::numeric_limits<T>::is_specialized));
   }
@@ -354,7 +353,7 @@ class CPrettyTable : CNonCopyable
       out << std::string(*len + 2, '-') << '+';
   }
 
-  // Caption is embedded to the first line delimiter as following
+  // Embeds the caption into the first delimiter line, for example:
   // +----+-[ FooBar ]-------+
   void PrintCaption(std::vector<unsigned int>& lens,
                     std::ostream& out) const
@@ -366,11 +365,11 @@ class CPrettyTable : CNonCopyable
     std::cerr << '\n';
 #endif
 
-    // Counts delimieter size.
+    // Counts delimiter size.
     const char del[] = { '-', '+', '-' };
     unsigned int dsz = ARRAYSIZE(del);
 
-    // Modifies caption.
+    // Builds caption.
     std::ostringstream buf;
     buf << "-[ " << m_caption << " ]-";
     std::string caption = buf.str();
@@ -380,7 +379,7 @@ class CPrettyTable : CNonCopyable
     unsigned int all =
       std::accumulate(lens.begin(), lens.end(), 2 + dsz * lens.size());
 
-    // 2 is for two '+' by sides
+    // 2 accounts for '+' on both sides.
     if (caption.length() >= all - 2)
     {
       out << '+' << caption << '+';
@@ -394,7 +393,7 @@ class CPrettyTable : CNonCopyable
           (0 != (gap % lens.size())) ? pad + gap % lens.size() : pad;
         lens[0] += pa0;
 
-        // Adds the pad to each column.
+        // Adds padding to each column.
         std::transform(++lens.begin(), lens.end(), ++lens.begin(),
                        std::bind2nd(std::plus<unsigned int>(), pad));
 
@@ -412,11 +411,11 @@ class CPrettyTable : CNonCopyable
       return;
     }
 
-    // Prepares regular delimiter without the caption.
+    // Builds a regular delimiter without the caption.
     std::stringstream bu2;
     PrintDelimiter(lens, bu2);
 
-    // Injects the caption to the prepared string.
+    // Injects the caption into the prepared delimiter.
     std::string line = bu2.str();
     unsigned int gap = (all - caption.length()) / 2;
     out << std::string(line, 0, gap)
