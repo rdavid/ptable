@@ -11,7 +11,7 @@
 :url-cv: http://cv.rabkin.co.il
 :url-hadolint: https://github.com/hadolint/hadolint
 :url-hoc: https://hitsofcode.com/view/github/rdavid/ptable?branch=master
-:url-goredo: http://www.goredo.cypherpunks.su/Install.html
+:url-goredo: http://www.goredo.stargrave.org/INSTALL.html
 :url-license: https://github.com/rdavid/ptable/blob/master/LICENSES/0BSD.txt
 :url-redo: http://cr.yp.to/redo.html
 :url-reuse: https://github.com/fsfe/reuse-action
