@@ -1,11 +1,11 @@
-# SPDX-FileCopyrightText: 2025 David Rabkin
+# SPDX-FileCopyrightText: 2025-2026 David Rabkin
 # SPDX-License-Identifier: 0BSD
 ---
 name: checkmake
 'on': [pull_request, push]
 env:
   CM_BIN: /usr/local/bin/checkmake
-  CM_URL: https://github.com/mrtazz/checkmake/releases/download/0.2.2/checkmake-0.2.2.linux.amd64 # yamllint disable-line
+  CM_URL: https://github.com/checkmake/checkmake/releases/download/v0.3.2/checkmake-v0.3.2.linux.amd64 # yamllint disable-line
 jobs:
   checkmake:
     runs-on: ubuntu-24.04
