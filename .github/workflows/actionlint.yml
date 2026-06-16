@@ -20,5 +20,5 @@ jobs:
     steps:
       - uses: actions/checkout@v6.0.3
       - id: get
-        run: bash <(curl --silent "$URL")
+        run: bash <(curl --fail --show-error --silent "$URL")
       - run: ${{ steps.get.outputs.executable }}

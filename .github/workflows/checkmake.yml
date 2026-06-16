@@ -21,6 +21,12 @@ jobs:
     steps:
       - uses: actions/checkout@v6.0.3
       - run: |
-          curl --location --output "$CM_BIN" --silent "$CM_URL"
-          chmod +x "$CM_BIN"
+          sudo curl \
+            --fail \
+            --location \
+            --output "$CM_BIN" \
+            --show-error \
+            --silent \
+            "$CM_URL"
+          sudo chmod +x "$CM_BIN"
           "$CM_BIN" Makefile
