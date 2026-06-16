@@ -11,12 +11,13 @@ concurrency:
   cancel-in-progress: true
 env:
   BASE_REL: 0.9.20260404
-  BASE_SRC: https://github.com/rdavid/shellbase/archive/refs/tags/v0.9.20260404.tar.gz # yamllint disable-line
+  BASE_URL: https://github.com/rdavid/shellbase/archive/refs/tags
 jobs:
   test:
     name: Test on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false
       matrix:
         os:
           - macos-14
@@ -29,15 +30,12 @@ jobs:
       - uses: actions/checkout@v6.0.3
       - if: runner.os == 'Linux'
         run: |
-          sudo apt-get update
-          sudo apt-get install gcc --yes
           g++ -std=c++03 -Wall -Werror -pedantic -o app main.cpp
           ./app
       - if: runner.os == 'macOS'
         run: |
-          brew upgrade
-          brew install gcc goredo
-          curl --location --silent "$BASE_SRC" |
+          brew install goredo
+          curl --fail --location --silent "$BASE_URL/v$BASE_REL.tar.gz" |
             tar \
               --directory /usr/local/bin \
               --extract \
