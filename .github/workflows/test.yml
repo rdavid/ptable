@@ -39,7 +39,7 @@ jobs:
         run: |
           brew install goredo
           curl --fail --location --silent "$BASE_URL/v$BASE_REL.tar.gz" |
-            tar \
+            sudo tar \
               --directory /usr/local/bin \
               --extract \
               --gzip \
