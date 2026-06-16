@@ -12,7 +12,7 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 env:
-  URL: https://raw.githubusercontent.com/rhysd/actionlint/main/scripts/download-actionlint.bash # yamllint disable-line
+  URL: https://raw.githubusercontent.com/rhysd/actionlint/v1.7.12/scripts/download-actionlint.bash # yamllint disable-line
 jobs:
   actionlint:
     runs-on: ubuntu-24.04
