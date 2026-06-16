@@ -1,14 +1,19 @@
-# SPDX-FileCopyrightText: 2025 David Rabkin
+# SPDX-FileCopyrightText: 2025-2026 David Rabkin
 # SPDX-License-Identifier: 0BSD
 ---
 name: shellcheck
 'on': [pull_request, push]
+permissions:
+  contents: read
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   shellcheck:
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v6
-      - uses: ludeeus/action-shellcheck@master
+      - uses: ludeeus/action-shellcheck@2.0.0
         with:
           additional_files: ./*.do
