@@ -30,7 +30,7 @@ jobs:
           - ubuntu-24.04
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v6.0.3
+      - uses: actions/checkout@v7.0.0
       - if: runner.os == 'Linux'
         run: |
           g++ -std=c++03 -Wall -Werror -pedantic -o app main.cpp
