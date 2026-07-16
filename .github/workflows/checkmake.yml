@@ -4,13 +4,20 @@
 name: checkmake
 'on':
   pull_request:
+    paths: &paths
+      - Makefile
   push:
     branches: [master]
+    paths: *paths
+  workflow_dispatch:
 permissions:
   contents: read
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+defaults:
+  run:
+    shell: sh
 env:
   CM_BIN: /usr/local/bin/checkmake
   CM_URL: https://github.com/checkmake/checkmake/releases/download/v0.3.2/checkmake-v0.3.2.linux.amd64 # yamllint disable-line

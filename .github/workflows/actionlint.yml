@@ -4,15 +4,20 @@
 name: actionlint
 'on':
   pull_request:
+    paths: &paths
+      - .github/**
   push:
     branches: [master]
+    paths: *paths
+  workflow_dispatch:
 permissions:
   contents: read
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
-env:
-  URL: https://raw.githubusercontent.com/rhysd/actionlint/v1.7.12/scripts/download-actionlint.bash # yamllint disable-line
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+defaults:
+  run:
+    shell: sh
 jobs:
   actionlint:
     runs-on: ubuntu-24.04
@@ -22,7 +27,16 @@ jobs:
         with:
           persist-credentials: false
       - id: get
-        run: bash <(curl --fail --show-error --silent "$URL")
+        run: |
+          srv=https://raw.githubusercontent.com/rhysd/actionlint
+          ver=1.7.12
+          curl \
+            --fail \
+            --location \
+            --silent \
+            --show-error \
+            "$srv/v$ver/scripts/download-actionlint.bash" |
+            bash -s "$ver"
       - env:
           exe: ${{ steps.get.outputs.executable }}
         run: "$exe"
