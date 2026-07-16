@@ -31,6 +31,8 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v7.0.0
+        with:
+          persist-credentials: false
       - if: runner.os == 'Linux'
         run: |
           g++ -std=c++03 -Wall -Werror -pedantic -o app main.cpp

@@ -19,6 +19,10 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v7.0.0
+        with:
+          persist-credentials: false
       - id: get
         run: bash <(curl --fail --show-error --silent "$URL")
-      - run: ${{ steps.get.outputs.executable }}
+      - env:
+          exe: ${{ steps.get.outputs.executable }}
+        run: "$exe"
