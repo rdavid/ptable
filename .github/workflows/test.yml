@@ -16,9 +16,6 @@ concurrency:
 defaults:
   run:
     shell: sh
-env:
-  BASE_REL: 0.9.20260707
-  BASE_URL: https://github.com/rdavid/shellbase/archive/refs/tags
 jobs:
   test:
     name: Test on ${{ matrix.os }}
@@ -30,8 +27,11 @@ jobs:
           - macos-14
           - macos-15
           - macos-15-intel
+          - macos-26
+          - macos-26-intel
           - ubuntu-22.04
           - ubuntu-24.04
+          - ubuntu-24.04-arm
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v7.0.0
@@ -43,12 +43,18 @@ jobs:
           ./app
       - if: runner.os == 'macOS'
         run: |
+          srv=https://github.com/rdavid/shellbase/archive/refs/tags
+          ver=0.9.20260707
           brew install goredo
-          curl --fail --location --silent "$BASE_URL/v$BASE_REL.tar.gz" |
+          curl \
+            --fail \
+            --location \
+            --silent \
+            "$srv/v$ver.tar.gz" |
             sudo tar \
               --directory /usr/local/bin \
               --extract \
               --gzip \
               --strip-components=2 \
-              shellbase-"$BASE_REL"/lib/base.sh
+              shellbase-"$ver"/lib/base.sh
           redo -xx
