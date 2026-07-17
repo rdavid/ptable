@@ -70,7 +70,8 @@ You can install Sergey Matveev's {url-goredo}[`goredo`] implementation.
 
 == Test
 
-`redo test` runs unit tests.
+`redo test` builds the debug application and compares its output with the
+recorded golden file.
 `redo lint` applies the following linters to the source files:
 {url-actionlint}[`actionlint`],
 {url-checkmake}[`checkmake`],
