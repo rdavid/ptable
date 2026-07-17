@@ -6,12 +6,11 @@
 :img-license: https://img.shields.io/github/license/rdavid/ptable?color=blue&labelColor=gray&logo=freebsd&logoColor=lightgray&style=flat
 :img-test: https://github.com/rdavid/ptable/actions/workflows/test.yml/badge.svg
 :url-actionlint: https://github.com/rhysd/actionlint
-:url-base: https://github.com/rdavid/shellbase/blob/master/lib/base.sh
-:url-checkmake: https://github.com/mrtazz/checkmake
+:url-alphanum: http://www.davekoelle.com/alphanum.html
+:url-checkmake: https://github.com/checkmake/checkmake
 :url-cv: http://cv.rabkin.co.il
-:url-hadolint: https://github.com/hadolint/hadolint
-:url-hoc: https://hitsofcode.com/view/github/rdavid/ptable?branch=master
 :url-goredo: http://www.goredo.stargrave.org/INSTALL.html
+:url-hoc: https://hitsofcode.com/view/github/rdavid/ptable?branch=master
 :url-license: https://github.com/rdavid/ptable/blob/master/LICENSES/0BSD.txt
 :url-redo: http://cr.yp.to/redo.html
 :url-reuse: https://github.com/fsfe/reuse-action
@@ -19,8 +18,8 @@
 :url-shfmt: https://github.com/mvdan/sh
 :url-test: https://github.com/rdavid/ptable/actions/workflows/test.yml
 :url-typos: https://github.com/crate-ci/typos
-:url-vale: https://vale.sh
 :url-yamllint: https://github.com/adrienverge/yamllint
+:url-zizmor: https://github.com/zizmorcore/zizmor
 
 = Pretty Table
 
@@ -34,6 +33,11 @@ toc::[]
 
 This C++ template formats and prints tabular data.
 It calculates column widths after all fields are known.
+The header-only template requires a C++03 compiler and the standard
+library.
+Copy `PrettyTable.h` and `AlphaNum.h` into a project to use it.
+Column sorting uses Dirk Jagdmann's implementation of the
+{url-alphanum}[alphanum algorithm] for human-friendly ordering.
 The following snippet shows typical usage:
 
 [,c++]
@@ -61,20 +65,21 @@ The code prints the following output to the standard error stream:
 
 == Build
 
-The project uses Daniel J. Bernstein's build system {url-redo}[`redo`].
-Install Sergey Matveev's {url-goredo}[`goredo`] implementation.
+The project uses Daniel J. Bernstein's build system, {url-redo}[`redo`].
+You can install Sergey Matveev's {url-goredo}[`goredo`] implementation.
 
 == Test
 
 `redo test` runs unit tests.
-`redo lint` runs the following linters on the source files:
+`redo lint` applies the following linters to the source files:
 {url-actionlint}[`actionlint`],
 {url-checkmake}[`checkmake`],
 {url-reuse}[`reuse`],
 {url-shellcheck}[`shellcheck`],
 {url-shfmt}[`shfmt`],
 {url-typos}[`typos`],
-{url-yamllint}[`yamllint`].
+{url-yamllint}[`yamllint`],
+{url-zizmor}[`zizmor`].
 
 == License
 
