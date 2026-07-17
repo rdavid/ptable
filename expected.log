@@ -1,0 +1,275 @@
+Sort ascending
+
++-----+-------------------+-------+-------------------------+
+| num | name              | score | value                   |
++-----+-------------------+-------+-------------------------+
+|   0 | foo-0-97-bar-20   |     0 | looooooooooooong string |
+|   1 | foo-1-98-bar-19   |   2.5 | looooooooooooong string |
+|   2 | foo-2-99-bar-18   |     5 | looooooooooooong string |
+|   3 | foo-3-100-bar-17  |   7.5 | looooooooooooong string |
+|   4 | foo-4-101-bar-16  |    10 | looooooooooooong string |
+|   5 | foo-5-102-bar-15  |  12.5 | looooooooooooong string |
+|   6 | foo-6-103-bar-14  |    15 | looooooooooooong string |
+|   7 | foo-7-104-bar-13  |  17.5 | looooooooooooong string |
+|   8 | foo-8-105-bar-12  |    20 | looooooooooooong string |
+|   9 | foo-9-106-bar-11  |  22.5 | looooooooooooong string |
+|  10 | foo-10-107-bar-10 |    25 | looooooooooooong string |
+|  11 | foo-11-108-bar-9  |  27.5 | looooooooooooong string |
+|  12 | foo-12-109-bar-8  |    30 | looooooooooooong string |
+|  13 | foo-13-110-bar-7  |  32.5 | looooooooooooong string |
+|  14 | foo-14-111-bar-6  |    35 | looooooooooooong string |
+|  15 | foo-15-112-bar-5  |  37.5 | looooooooooooong string |
+|  16 | foo-16-113-bar-4  |    40 | looooooooooooong string |
+|  17 | foo-17-114-bar-3  |  42.5 | looooooooooooong string |
+|  18 | foo-18-115-bar-2  |    45 | looooooooooooong string |
+|  19 | foo-19-116-bar-1  |  47.5 | looooooooooooong string |
++-----+-------------------+-------+-------------------------+
+Sort descending
+
++-----+-------------------+-------+-------------------------+
+| num | name              | score | value                   |
++-----+-------------------+-------+-------------------------+
+|  19 | foo-19-116-bar-1  |  47.5 | looooooooooooong string |
+|  18 | foo-18-115-bar-2  |    45 | looooooooooooong string |
+|  17 | foo-17-114-bar-3  |  42.5 | looooooooooooong string |
+|  16 | foo-16-113-bar-4  |    40 | looooooooooooong string |
+|  15 | foo-15-112-bar-5  |  37.5 | looooooooooooong string |
+|  14 | foo-14-111-bar-6  |    35 | looooooooooooong string |
+|  13 | foo-13-110-bar-7  |  32.5 | looooooooooooong string |
+|  12 | foo-12-109-bar-8  |    30 | looooooooooooong string |
+|  11 | foo-11-108-bar-9  |  27.5 | looooooooooooong string |
+|  10 | foo-10-107-bar-10 |    25 | looooooooooooong string |
+|   9 | foo-9-106-bar-11  |  22.5 | looooooooooooong string |
+|   8 | foo-8-105-bar-12  |    20 | looooooooooooong string |
+|   7 | foo-7-104-bar-13  |  17.5 | looooooooooooong string |
+|   6 | foo-6-103-bar-14  |    15 | looooooooooooong string |
+|   5 | foo-5-102-bar-15  |  12.5 | looooooooooooong string |
+|   4 | foo-4-101-bar-16  |    10 | looooooooooooong string |
+|   3 | foo-3-100-bar-17  |   7.5 | looooooooooooong string |
+|   2 | foo-2-99-bar-18   |     5 | looooooooooooong string |
+|   1 | foo-1-98-bar-19   |   2.5 | looooooooooooong string |
+|   0 | foo-0-97-bar-20   |     0 | looooooooooooong string |
++-----+-------------------+-------+-------------------------+
+Caption
+lens[]: 3 5 5 5 
+
++-----+-----[ 0  ]----+-------+
+| num | name  | score | value |
++-----+-------+-------+-------+
+| 100 | short |     0 | long  |
++-----+-------+-------+-------+
+lens[]: 3 5 5 5 
+
++-----+----[ 1 F ]----+-------+
+| num | name  | score | value |
++-----+-------+-------+-------+
+| 100 | short |     0 | long  |
++-----+-------+-------+-------+
+lens[]: 3 5 5 5 
+
++-----+----[ 2 FF ]---+-------+
+| num | name  | score | value |
++-----+-------+-------+-------+
+| 100 | short |     0 | long  |
++-----+-------+-------+-------+
+lens[]: 3 5 5 5 
+
++-----+---[ 3 FFF ]---+-------+
+| num | name  | score | value |
++-----+-------+-------+-------+
+| 100 | short |     0 | long  |
++-----+-------+-------+-------+
+lens[]: 3 5 5 5 
+
++-----+---[ 4 FFFF ]--+-------+
+| num | name  | score | value |
++-----+-------+-------+-------+
+| 100 | short |     0 | long  |
++-----+-------+-------+-------+
+lens[]: 3 5 5 5 
+
++-----+--[ 5 FFFFF ]--+-------+
+| num | name  | score | value |
++-----+-------+-------+-------+
+| 100 | short |     0 | long  |
++-----+-------+-------+-------+
+lens[]: 3 5 5 5 
+
++-----+--[ 6 FFFFFF ]-+-------+
+| num | name  | score | value |
++-----+-------+-------+-------+
+| 100 | short |     0 | long  |
++-----+-------+-------+-------+
+lens[]: 3 5 5 5 
+
++-----+-[ 7 FFFFFFF ]-+-------+
+| num | name  | score | value |
++-----+-------+-------+-------+
+| 100 | short |     0 | long  |
++-----+-------+-------+-------+
+lens[]: 3 5 5 5 
+
++-----+-[ 8 FFFFFFFF ]--------+
+| num | name  | score | value |
++-----+-------+-------+-------+
+| 100 | short |     0 | long  |
++-----+-------+-------+-------+
+lens[]: 3 5 5 5 
+
++------[ 9 FFFFFFFFF ]--------+
+| num | name  | score | value |
++-----+-------+-------+-------+
+| 100 | short |     0 | long  |
++-----+-------+-------+-------+
+lens[]: 3 5 5 5 
+
++-----[ 10 FFFFFFFFFF ]-------+
+| num | name  | score | value |
++-----+-------+-------+-------+
+| 100 | short |     0 | long  |
++-----+-------+-------+-------+
+lens[]: 3 5 5 5 
+
++-----[ 11 FFFFFFFFFFF ]------+
+| num | name  | score | value |
++-----+-------+-------+-------+
+| 100 | short |     0 | long  |
++-----+-------+-------+-------+
+lens[]: 3 5 5 5 
+
++----[ 12 FFFFFFFFFFFF ]------+
+| num | name  | score | value |
++-----+-------+-------+-------+
+| 100 | short |     0 | long  |
++-----+-------+-------+-------+
+lens[]: 3 5 5 5 
+
++----[ 13 FFFFFFFFFFFFF ]-----+
+| num | name  | score | value |
++-----+-------+-------+-------+
+| 100 | short |     0 | long  |
++-----+-------+-------+-------+
+lens[]: 3 5 5 5 
+
++---[ 14 FFFFFFFFFFFFFF ]-----+
+| num | name  | score | value |
++-----+-------+-------+-------+
+| 100 | short |     0 | long  |
++-----+-------+-------+-------+
+lens[]: 3 5 5 5 
+
++---[ 15 FFFFFFFFFFFFFFF ]----+
+| num | name  | score | value |
++-----+-------+-------+-------+
+| 100 | short |     0 | long  |
++-----+-------+-------+-------+
+lens[]: 3 5 5 5 
+
++--[ 16 FFFFFFFFFFFFFFFF ]----+
+| num | name  | score | value |
++-----+-------+-------+-------+
+| 100 | short |     0 | long  |
++-----+-------+-------+-------+
+lens[]: 3 5 5 5 
+
++--[ 17 FFFFFFFFFFFFFFFFF ]---+
+| num | name  | score | value |
++-----+-------+-------+-------+
+| 100 | short |     0 | long  |
++-----+-------+-------+-------+
+lens[]: 3 5 5 5 
+
++-[ 18 FFFFFFFFFFFFFFFFFF ]---+
+| num | name  | score | value |
++-----+-------+-------+-------+
+| 100 | short |     0 | long  |
++-----+-------+-------+-------+
+lens[]: 3 5 5 5 
+
++-[ 19 FFFFFFFFFFFFFFFFFFF ]--+
+| num | name  | score | value |
++-----+-------+-------+-------+
+| 100 | short |     0 | long  |
++-----+-------+-------+-------+
+lens[]: 3 5 5 5 
+
+-[ 20 FFFFFFFFFFFFFFFFFFFF ]--+
+| num | name  | score | value |
++-----+-------+-------+-------+
+| 100 | short |     0 | long  |
++-----+-------+-------+-------+
+lens[]: 3 5 5 5 
++-[ 21 FFFFFFFFFFFFFFFFFFFFF ]-+
+| num  | name  | score | value |
++------+-------+-------+-------+
+|  100 | short |     0 | long  |
++------+-------+-------+-------+
+lens[]: 3 5 5 5 
++-[ 22 FFFFFFFFFFFFFFFFFFFFFF ]-+
+| num   | name  | score | value |
++-------+-------+-------+-------+
+|   100 | short |     0 | long  |
++-------+-------+-------+-------+
+lens[]: 3 5 5 5 
++-[ 23 FFFFFFFFFFFFFFFFFFFFFFF ]-+
+| num    | name  | score | value |
++--------+-------+-------+-------+
+|    100 | short |     0 | long  |
++--------+-------+-------+-------+
+lens[]: 3 5 5 5 
+
+gap:4, pad:1, pa0:1
++-[ 24 FFFFFFFFFFFFFFFFFFFFFFFF ]-+
+| num  | name   | score  | value  |
++------+--------+--------+--------+
+|  100 | short  |      0 | long   |
++------+--------+--------+--------+
+lens[]: 3 5 5 5 
+
+gap:5, pad:1, pa0:2
++-[ 25 FFFFFFFFFFFFFFFFFFFFFFFFF ]-+
+| num   | name   | score  | value  |
++-------+--------+--------+--------+
+|   100 | short  |      0 | long   |
++-------+--------+--------+--------+
+lens[]: 3 5 5 5 
+
+gap:6, pad:1, pa0:3
++-[ 26 FFFFFFFFFFFFFFFFFFFFFFFFFF ]-+
+| num    | name   | score  | value  |
++--------+--------+--------+--------+
+|    100 | short  |      0 | long   |
++--------+--------+--------+--------+
+lens[]: 3 5 5 5 
+
+gap:7, pad:1, pa0:4
++-[ 27 FFFFFFFFFFFFFFFFFFFFFFFFFFF ]-+
+| num     | name   | score  | value  |
++---------+--------+--------+--------+
+|     100 | short  |      0 | long   |
++---------+--------+--------+--------+
+lens[]: 3 5 5 5 
+
+gap:8, pad:2, pa0:2
++-[ 28 FFFFFFFFFFFFFFFFFFFFFFFFFFFF ]-+
+| num   | name    | score   | value   |
++-------+---------+---------+---------+
+|   100 | short   |       0 | long    |
++-------+---------+---------+---------+
+lens[]: 3 5 5 5 
+
+gap:9, pad:2, pa0:3
++-[ 29 FFFFFFFFFFFFFFFFFFFFFFFFFFFFF ]-+
+| num    | name    | score   | value   |
++--------+---------+---------+---------+
+|    100 | short   |       0 | long    |
++--------+---------+---------+---------+
+Resource consumption
+lens[]: 3 4 5 5 
+
+gap:10, pad:2, pa0:4
++-[ 29 FFFFFFFFFFFFFFFFFFFFFFFFFFFFF ]-+
+| num     | name   | score   | value   |
++---------+--------+---------+---------+
++---------+--------+---------+---------+
+Done.

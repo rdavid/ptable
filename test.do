@@ -2,13 +2,15 @@
 # vi: lbr noet sw=2 ts=2 tw=79 wrap
 # SPDX-FileCopyrightText: 2023-2026 David Rabkin
 # SPDX-License-Identifier: 0BSD
-redo-ifchange ./*.cpp ./*.h
-
-# std::bind2nd is deprecated in C++11 and removed in C++17. Use `-std=c++03`.
+#
+# Builds the debug application and compares its standard error stream with
+# the recorded golden output. std::bind2nd is deprecated in C++11 and
+# removed in C++17, so the build sticks to `-std=c++03`.
+redo-ifchange ./*.cpp ./*.h ./expected.log
 g++ -std=c++03 -Wall -Werror -pedantic -o ./app ./main.cpp
-if ./app 2>&1 >/dev/null | grep Done; then
+./app 2>./app.log >/dev/null
+if diff ./expected.log ./app.log >&2; then
 	printf >&2 success\\n
-	exit 0
 else
 	printf >&2 failure\\n
 	exit 1

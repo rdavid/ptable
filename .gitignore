@@ -1,5 +1,6 @@
 .redo
 app
+app.log
 lint
 main.d
 main.o

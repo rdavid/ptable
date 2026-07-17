@@ -40,7 +40,8 @@ jobs:
       - if: runner.os == 'Linux'
         run: |
           g++ -std=c++03 -Wall -Werror -pedantic -o app main.cpp
-          ./app
+          ./app 2>app.log >/dev/null
+          diff expected.log app.log
       - if: runner.os == 'macOS'
         run: |
           srv=https://github.com/rdavid/shellbase/archive/refs/tags
