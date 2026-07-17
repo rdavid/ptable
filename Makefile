@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: 0BSD
 REDO ?= redo
 .DEFAULT_GOAL := all
-.PHONY: all clean test
+.PHONY: all clean lint test warning
 
 warning:
 	@echo WARNING: Proxying commands to redo.
@@ -11,6 +11,9 @@ all: warning
 	$(REDO) $@
 
 clean: warning
+	$(REDO) $@
+
+lint: warning
 	$(REDO) $@
 
 test: warning
