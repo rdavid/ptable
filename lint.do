@@ -11,7 +11,9 @@
 # hands any further operands to it as positional parameters, so files after
 # the first would be silently skipped rather than checked.
 #
-# Variable appears unused and file not following:
+# Silences SC2034, since the variables are consumed by the sourced
+# Shellbase library rather than used directly here, and SC1090, since the
+# source path is not a literal.
 #  shellcheck disable=SC2034,SC1090
 redo-ifchange \
 	./.github/*.yml \

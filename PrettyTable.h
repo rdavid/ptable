@@ -32,9 +32,8 @@ char (&arraysize_helper(T (&)[size]))[size];
 #define ARRAYSIZE(arr) (sizeof(arraysize_helper(arr)))
 #define ARRAYEND(arr) ((arr) + ARRAYSIZE(arr))
 
-// A class designed to disable the copy constructor and copy assignment
-// operator. By making the copy constructor and assignment operator private,
-// any class derived from CNonCopyable becomes non-copyable.
+// Disables the copy constructor and copy assignment operator. Deriving from
+// CNonCopyable makes a class non-copyable, since both members stay private.
 // Usage example:
 // class CFooBar : public CNonCopyable {};
 class CNonCopyable
@@ -365,26 +364,26 @@ class CPrettyTable : CNonCopyable
     std::cerr << '\n';
 #endif
 
-    // Counts delimiter size.
+    // Length of one delimiter segment.
     const char del[] = { '-', '+', '-' };
     unsigned int dsz = ARRAYSIZE(del);
 
-    // Builds caption.
+    // Builds the caption.
     std::ostringstream buf;
     buf << "-[ " << m_caption << " ]-";
     std::string caption = buf.str();
 
-    // Width of the table includes delimiter size for each column and '+' on
-    // each border.
+    // The table width includes a delimiter segment for each column, plus
+    // '+' on each border.
     unsigned int all =
       std::accumulate(lens.begin(), lens.end(), 2 + dsz * lens.size());
 
-    // 2 accounts for '+' on both sides.
+    // The 2 accounts for '+' on both sides.
     if (caption.length() >= all - 2)
     {
       out << '+' << caption << '+';
 
-      // Expands cell lengths to fit to the caption.
+      // Expands cell lengths to fit the caption.
       unsigned int gap = caption.length() - all + 2 + 1;
       if (gap >= lens.size())
       {
@@ -397,7 +396,7 @@ class CPrettyTable : CNonCopyable
         std::transform(++lens.begin(), lens.end(), ++lens.begin(),
                        std::bind2nd(std::plus<unsigned int>(), pad));
 
-#ifdef PRETTY_TABLE_DEBUG 
+#ifdef PRETTY_TABLE_DEBUG
         std::cerr << '\n'
                   << "gap:" << gap
                   << ", pad:" << pad
