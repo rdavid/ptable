@@ -29,7 +29,13 @@ jobs:
       - uses: actions/checkout@v7.0.1
         with:
           persist-credentials: false
-      - run: |
+      - id: cache
+        uses: actions/cache@v6.1.0
+        with:
+          path: ${{ env.CM_BIN }}
+          key: checkmake-0.3.2-${{ runner.os }}
+      - if: steps.cache.outputs.cache-hit != 'true'
+        run: |
           sudo curl \
             --fail \
             --location \
@@ -38,4 +44,4 @@ jobs:
             --silent \
             "$CM_URL"
           sudo chmod +x "$CM_BIN"
-          "$CM_BIN" Makefile
+      - run: $CM_BIN Makefile
