@@ -48,9 +48,9 @@ endif::[]
 
 == About
 
-This C++ template formats and prints tabular data.
+This {cpp} template formats and prints tabular data.
 It calculates column widths after all fields are known.
-The header-only template requires a C++03 compiler and the standard
+The header-only template requires a {cpp}03 compiler and the standard
 library.
 Copy `PrettyTable.h` and `AlphaNum.h` into a project to use it.
 Column sorting uses Dirk Jagdmann's implementation of the
