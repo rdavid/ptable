@@ -23,9 +23,14 @@
 
 = Pretty Table
 
-image:{img-test}[test,link={url-test}]
-image:{img-hoc}[hits of code,link={url-hoc}]
-image:{img-license}[license,link={url-license}]
+[subs=attributes+]
+++++
+<div align="right">
+<a href="{url-test}"><img src="{img-test}" alt="test"></a>
+<a href="{url-hoc}"><img src="{img-hoc}" alt="hits of code"></a>
+<a href="{url-license}"><img src="{img-license}" alt="license"></a>
+</div>
+++++
 
 toc::[]
 
