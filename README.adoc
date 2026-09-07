@@ -6,7 +6,7 @@
 :img-license: https://img.shields.io/github/license/rdavid/ptable?color=94bff3&labelColor=555555&logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI%2BPHRleHQgeD0iMTIiIHk9IjIwIiBmb250LWZhbWlseT0iSGVsdmV0aWNhLEFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNkY2RjY2MiPiYjMTY5OzwvdGV4dD48L3N2Zz4%3D&style=flat
 :img-test: https://img.shields.io/github/actions/workflow/status/rdavid/ptable/test.yml?branch=master&color=7f9f7f&label=test&labelColor=555555&logo=github&logoColor=dcdccc&style=flat
 :url-actionlint: https://rhysd.github.io/actionlint/
-:url-alphanum: http://www.davekoelle.com/alphanum.html
+:url-alphanum: https://github.com/mrquincle/particlefilter/blob/master/inc/alphanum.hpp
 :url-checkmake: https://github.com/checkmake/checkmake
 :url-cv: http://cv.rabkin.co.il
 :url-goredo: http://www.goredo.stargrave.org/INSTALL.html
