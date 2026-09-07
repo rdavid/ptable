@@ -255,25 +255,25 @@ class CPrettyTable : CNonCopyable
     if (lens.empty())
       return;
 
-    // The first line. PrintDelimiter starts with '\n'.
+    // Prints the first line. PrintDelimiter starts with '\n'.
     if (!m_caption.empty())
       PrintCaption(lens, out);
     else
       PrintDelimiter(lens, out);
 
-    // Header row. PrintRow starts with '\n'.
+    // Prints the header row. PrintRow starts with '\n'.
     PrintRow(*m_db.begin(), lens, out);
 
-    // Delimiter after the header row.
+    // Prints the delimiter that follows the header row.
     if (m_has_header)
       PrintDelimiter(lens, out);
 
-    // Data rows.
+    // Prints the data rows.
     row = m_db.begin();
     for (++row; row != m_db.end(); ++row)
       PrintRow(*row, lens, out);
 
-    // Final delimiter line.
+    // Prints the final delimiter line.
     PrintDelimiter(lens, out);
   }
 
@@ -364,7 +364,7 @@ class CPrettyTable : CNonCopyable
     std::cerr << '\n';
 #endif
 
-    // Length of one delimiter segment.
+    // Declares one delimiter segment and measures its length.
     const char del[] = { '-', '+', '-' };
     unsigned int dsz = ARRAYSIZE(del);
 
