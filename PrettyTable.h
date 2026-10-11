@@ -79,7 +79,7 @@ std::ostream& operator<<(std::ostream& os, const PrettyTableStubType&);
 // tbl.SetCaption("FooBar");
 // tbl.Dump(std::cerr);
 //
-// The code prints the following output to the standard error stream:
+// The example prints the following output to the standard error stream:
 // +-----+[ FooBar ]------+
 // | num | name   | score |
 // +-----+--------+-------+

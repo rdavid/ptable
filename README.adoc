@@ -12,6 +12,7 @@
 :url-goredo: http://www.goredo.stargrave.org/INSTALL.html
 :url-hoc: https://hitsofcode.com/view/github/rdavid/ptable?branch=master
 :url-license: https://github.com/rdavid/ptable/blob/master/LICENSES/0BSD.txt
+:url-pages: https://rdavid.github.io/ptable/
 :url-redo: http://cr.yp.to/redo.html
 :url-reuse: https://reuse.software/
 :url-shellcheck: https://www.shellcheck.net/
@@ -53,6 +54,9 @@ It calculates column widths after all fields are known.
 The header-only template requires a {cpp}03 compiler and the standard
 library.
 Copy `PrettyTable.h` and `AlphaNum.h` into a project to use it.
+ifndef::pages-build[]
+The project also has a {url-pages}[website].
+endif::[]
 Column sorting uses Dirk Jagdmann's implementation of the
 {url-alphanum}[alphanum algorithm] for human-friendly ordering.
 The following snippet shows typical usage:
@@ -66,7 +70,7 @@ for (int i = 0; i < 5; ++i) {
 tbl.SetCaption("FooBar");
 tbl.Dump(std::cerr);
 ----
-The code prints the following output to the standard error stream:
+The snippet prints the following output to the standard error stream:
 
 ifdef::pages-build[]
 ++++
