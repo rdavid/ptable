@@ -50,6 +50,7 @@ jobs:
           curl \
             --fail \
             --location \
+            --show-error \
             --silent \
             "$srv/v$ver.tar.gz" |
             sudo tar \
