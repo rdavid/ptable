@@ -45,7 +45,7 @@ jobs:
       - if: runner.os == 'macOS'
         run: |
           srv=https://github.com/rdavid/shellbase/archive/refs/tags
-          ver=0.9.20260707
+          ver=0.9.20261010
           brew install goredo
           curl \
             --fail \
