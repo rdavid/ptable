@@ -11,24 +11,17 @@
 # hands any further operands to it as positional parameters, so files after
 # the first would be silently skipped rather than checked.
 #
-# Silences SC2034, since the variables are consumed by the sourced
-# Shellbase library rather than used directly here, and SC1090, since the
-# source path is not a literal.
-#  shellcheck disable=SC2034,SC1090
+# Silences shellcheck warnings about unused variables and sourced files:
+#  shellcheck disable=SC2034,SC1091
 redo-ifchange \
 	./.github/*.yml \
 	./.github/workflows/*.yml \
 	./*.do \
 	./Makefile
 readonly \
-	BASE_APP_VERSION=0.9.20260716 \
-	BASE_MIN_VERSION=0.9.20260707 \
-	BSH=/usr/local/bin/base.sh
-[ -r "$BSH" ] || {
-	printf >&2 Please\ install\ Shellbase.\\n
-	exit 1
-}
-. "$BSH"
+	BASE_APP_VERSION=0.9.20261025 \
+	BASE_MIN_VERSION=0.9.20260707
+. base.sh
 cmd_runif actionlint
 cmd_runif checkmake ./Makefile
 for f in ./*.do; do
