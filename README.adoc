@@ -49,10 +49,10 @@ endif::[]
 
 == About
 
-This {cpp} template formats and prints tabular data.
+This {cpp} template prints string and numeric data as an aligned, sortable
+table.
 It calculates column widths after all fields are known.
-The header-only template requires a {cpp}03 compiler and the standard
-library.
+The template requires only the standard library.
 Copy `PrettyTable.h` and `AlphaNum.h` into a project to use it.
 ifndef::pages-build[]
 The project also has a {url-pages}[website].
@@ -166,6 +166,50 @@ ifndef::pages-build[]
 +-----+--------+-------+
 ----
 endif::[]
+
+== API
+
+Each template parameter sets the type of one column, up to 20 columns.
+A column accepts any type that supports `operator<<`.
+Numeric columns align right and other columns align left.
+
+[cols="2,5"]
+|===
+|Method |Description
+
+|`CPrettyTable()`
+|Creates a table without a header row.
+
+|`Add(v1, ...)`
+|Appends a row with one value per column.
+Omitted trailing values leave their cells empty.
+
+|`SetCaption(s)`
+|Embeds a caption into the top border.
+A `NULL` caption removes it.
+A long caption widens the columns to fit.
+
+|`Sort(col, order)`
+|Sorts data rows by the zero-based column with the alphanum algorithm.
+The order is `ePTSO_Ascending` by default or `ePTSO_Descending`.
+The header row stays on top.
+
+|`Dump(out)`
+|Prints the table to an output stream.
+Each line, including the first one, starts with a newline.
+
+|`Get()`
+|Returns the printed table as a string.
+
+|`Size()`
+|Returns the number of data rows without the header row.
+
+|`IsEmpty()`
+|Reports whether the table has no data rows.
+
+|`Clear()`
+|Removes all data rows and keeps the header row.
+|===
 
 == Build
 
