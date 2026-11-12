@@ -21,20 +21,19 @@
   #include <iostream>
 #endif
 
-// 1. The function receives a reference to an array as its parameter.
-// 2. It returns a reference to a char array as its output.
-// 3. The function lacks a definition and is never invoked.
-// 4. The reference to the array retains its size information.
-// 5. The `sizeof` operator correctly returns the size of the char array.
+// Takes a reference to an array and returns a reference to a char array of
+// the same length. It has no definition and is never called. The sizeof
+// operator evaluates its return type at compile time, so ARRAYSIZE yields
+// the element count and rejects pointers.
 template <typename T, size_t size>
 char (&arraysize_helper(T (&)[size]))[size];
 
 #define ARRAYSIZE(arr) (sizeof(arraysize_helper(arr)))
 #define ARRAYEND(arr) ((arr) + ARRAYSIZE(arr))
 
-// Disables the copy constructor and copy assignment operator. Deriving from
-// CNonCopyable makes a class non-copyable, since both members stay private.
-// Usage example:
+// Disables the copy constructor and the copy assignment operator. A class
+// that derives from CNonCopyable becomes non-copyable, since both members
+// stay private. Usage example:
 // class CFooBar : public CNonCopyable {};
 class CNonCopyable
 {
@@ -49,29 +48,33 @@ class CNonCopyable
   void operator=(const CNonCopyable&);
 };
 
-// Allows iteration over an enum, for example with ++i.
+// Advances an enum value to the next enumerator and wraps from last back to
+// first. It returns the updated value.
 template <typename Enum>
 Enum& enum_increment(Enum& value, const Enum& first, const Enum& last)
 { return value = (value == last) ? first : static_cast<Enum>(value + 1); }
 
-
-// Dummy type used as the default template parameter for CPrettyTable.
+// Marks an unused column as the default template parameter of CPrettyTable.
+// Its size of three bytes matches no native type, so AddCell detects it.
 struct PrettyTableStubType
 {
-  char buf[3];  // No native type has this exact size.
+  char buf[3];
 };
 
+// Selects the direction of CPrettyTable::Sort.
 enum ePrettyTableSortOrder
 {
   ePTSO_Ascending,
   ePTSO_Descending
 };
 
-// This function is never called, but the compiler requires it.
+// Lets AddCell compile for the stub type. It has no definition and is never
+// called.
 std::ostream& operator<<(std::ostream& os, const PrettyTableStubType&);
 
-// This template formats and prints data as a table. It calculates column
-// widths after all fields are known. Example:
+// Formats and prints string and numeric data as a table. Each template
+// parameter is the type of one column, up to 20 columns. The template
+// calculates column widths after all rows are known. Example:
 //
 // CPrettyTable<int, const char*, double> tbl("num", "name", "score");
 // for (int i = 0; i < 5; ++i)
@@ -115,7 +118,8 @@ class CPrettyTable : CNonCopyable
   // Creates a table without a header row.
   CPrettyTable() : m_has_header(false) {}
 
-  // Accepts column titles as parameters.
+  // Creates a table with a header row. Each argument is a column title.
+  // The first NULL argument ends the list.
   CPrettyTable(const char* p01,
                const char* p02 = NULL,
                const char* p03 = NULL,
@@ -150,8 +154,11 @@ class CPrettyTable : CNonCopyable
     m_db.push_back(row);
   }
 
+  // Sets the caption that the top border embeds. NULL clears it.
   void SetCaption(const char* s) { m_caption = (NULL != s) ? s : ""; }
 
+  // Appends a row with one value per column. Omitted values leave the
+  // trailing cells empty.
   void Add(const T01& p01 = PrettyTableStubType(),
            const T02& p02 = PrettyTableStubType(),
            const T03& p03 = PrettyTableStubType(),
@@ -198,25 +205,25 @@ class CPrettyTable : CNonCopyable
     m_db.push_back(row);
   }
 
+  // Returns the number of data rows without the header row.
   unsigned int Size() const
   {
     if (IsEmpty())
       return 0;
-
     return m_db.size() - 1;
   }
 
+  // Reports whether the table has no data rows.
   bool IsEmpty() const
   {
     if (m_db.empty())
       return true;
-
     if (m_has_header && 1 == m_db.size())
       return true;
-
     return false;
   }
 
+  // Returns the printed table as a string.
   std::string Get() const
   {
     std::ostringstream buf;
@@ -224,6 +231,7 @@ class CPrettyTable : CNonCopyable
     return buf.str();
   }
 
+  // Removes all data rows and keeps the header row.
   void Clear()
   {
     if (m_has_header)
@@ -232,18 +240,20 @@ class CPrettyTable : CNonCopyable
       m_db.clear();
   }
 
+  // Prints the table to the stream. It measures the widest cell of each
+  // column first. Then it prints the top border, which holds the caption if
+  // one is set. The header row and its delimiter follow, then the data rows
+  // and the bottom border. Every line starts with a newline.
   void Dump(std::ostream& out) const
   {
     if (m_db.empty())
       return;
-
     std::vector<unsigned int> lens;
     DB::const_iterator row;
     for (row = m_db.begin(); row != m_db.end(); ++row)
     {
       if (row->size() > lens.size())
         lens.insert(lens.end(), row->size() - lens.size(), 0);
-
       std::vector<Val>::const_iterator col;
       for (col = row->begin(); col != row->end(); ++col)
       {
@@ -254,45 +264,36 @@ class CPrettyTable : CNonCopyable
     }
     if (lens.empty())
       return;
-
-    // Prints the first line. PrintDelimiter starts with '\n'.
     if (!m_caption.empty())
       PrintCaption(lens, out);
     else
       PrintDelimiter(lens, out);
-
-    // Prints the header row. PrintRow starts with '\n'.
     PrintRow(*m_db.begin(), lens, out);
-
-    // Prints the delimiter that follows the header row.
     if (m_has_header)
       PrintDelimiter(lens, out);
-
-    // Prints the data rows.
     row = m_db.begin();
     for (++row; row != m_db.end(); ++row)
       PrintRow(*row, lens, out);
-
-    // Prints the final delimiter line.
     PrintDelimiter(lens, out);
   }
 
-  // Sorts the table by the selected column (the first column index is 0).
-  // This operation can be CPU-intensive.
+  // Sorts the data rows by the zero-based column in the given order. The
+  // header row stays on top. The alphanumeric comparison makes the operation
+  // CPU-intensive on large tables.
   void Sort(unsigned int col, ePrettyTableSortOrder order = ePTSO_Ascending)
   {
-    // Keeps the header row out of sorting.
     DB title;
     if (m_has_header)
       title.splice(title.begin(), m_db, m_db.begin());
     m_db.sort(RowCmp(col, order));
-
-    // Restores the header row.
     if (m_has_header)
       m_db.splice(m_db.begin(), title, title.begin());
   }
 
  private:
+  // Compares two rows by one column. It uses Dirk Jagdmann's alphanumeric
+  // comparator for human-friendly ordering. A row without the column always
+  // compares as less.
   class RowCmp
   {
    public:
@@ -302,8 +303,6 @@ class CPrettyTable : CNonCopyable
     {
       if (m_col >= lhs.size() || m_col >= rhs.size())
         return true;
-
-      // Uses an alphanumeric comparator for more human-friendly sorting.
       int res = doj::alphanum_comp(lhs[m_col].first, rhs[m_col].first);
       return (ePTSO_Ascending == m_order) ? res < 0 : res >= 0;
     }
@@ -313,22 +312,22 @@ class CPrettyTable : CNonCopyable
     ePrettyTableSortOrder m_order;
   };
 
+  // Converts a value to a cell and appends it to the row. It skips the stub
+  // type that marks an omitted argument. Numeric types report
+  // is_specialized=true and become right-aligned. Other types, such as
+  // strings, stay left-aligned.
   template<typename T>
   void AddCell(std::vector<std::pair<std::string, bool> >& row, const T& p)
   {
-    // Distinguishes default arguments from caller-provided values.
     if (sizeof(PrettyTableStubType) == sizeof(T))
       return;
-
     std::ostringstream buf;
     buf << p;
-
-    // Numeric types have is_specialized=true, so they are right-aligned.
-    // Other types (for example strings) are left-aligned.
     row.push_back(std::make_pair(buf.str(),
                                  std::numeric_limits<T>::is_specialized));
   }
 
+  // Prints one row on a new line and pads each cell to its column width.
   void PrintRow(std::list<std::vector<std::pair<std::string, bool> > >::const_reference row,
                  const std::vector<unsigned int>& lens,
                  std::ostream& out) const
@@ -343,6 +342,7 @@ class CPrettyTable : CNonCopyable
           << col->first << " |";
   }
 
+  // Prints a border line on a new line.
   void PrintDelimiter(const std::vector<unsigned int>& lens,
                       std::ostream& out) const
   {
@@ -352,8 +352,13 @@ class CPrettyTable : CNonCopyable
       out << std::string(*len + 2, '-') << '+';
   }
 
-  // Embeds the caption into the first delimiter line, for example:
+  // Embeds the caption into the top border, for example:
   // +----+-[ FooBar ]-------+
+  // The table width counts each column, a three-character delimiter segment
+  // per column, and the '+' on each side. A caption wider than the table
+  // replaces the whole border. The missing width then goes to the columns,
+  // and the first column takes the remainder. Otherwise the caption
+  // replaces the middle of a regular border.
   void PrintCaption(std::vector<unsigned int>& lens,
                     std::ostream& out) const
   {
@@ -363,27 +368,16 @@ class CPrettyTable : CNonCopyable
               std::ostream_iterator<unsigned int>(std::cerr, " "));
     std::cerr << '\n';
 #endif
-
-    // Declares one delimiter segment and measures its length.
     const char del[] = { '-', '+', '-' };
     unsigned int dsz = ARRAYSIZE(del);
-
-    // Builds the caption.
     std::ostringstream buf;
     buf << "-[ " << m_caption << " ]-";
     std::string caption = buf.str();
-
-    // The table width includes a delimiter segment for each column, plus
-    // '+' on each border.
     unsigned int all =
       std::accumulate(lens.begin(), lens.end(), 2 + dsz * lens.size());
-
-    // The 2 accounts for '+' on both sides.
     if (caption.length() >= all - 2)
     {
       out << '+' << caption << '+';
-
-      // Expands cell lengths to fit the caption.
       unsigned int gap = caption.length() - all + 2 + 1;
       if (gap >= lens.size())
       {
@@ -391,11 +385,8 @@ class CPrettyTable : CNonCopyable
         unsigned int pa0 =
           (0 != (gap % lens.size())) ? pad + gap % lens.size() : pad;
         lens[0] += pa0;
-
-        // Adds padding to each column.
         std::transform(++lens.begin(), lens.end(), ++lens.begin(),
                        std::bind2nd(std::plus<unsigned int>(), pad));
-
 #ifdef PRETTY_TABLE_DEBUG
         std::cerr << '\n'
                   << "gap:" << gap
@@ -409,12 +400,8 @@ class CPrettyTable : CNonCopyable
       }
       return;
     }
-
-    // Builds a regular delimiter without the caption.
     std::stringstream bu2;
     PrintDelimiter(lens, bu2);
-
-    // Injects the caption into the prepared delimiter.
     std::string line = bu2.str();
     unsigned int gap = (all - caption.length()) / 2;
     out << std::string(line, 0, gap)
@@ -430,7 +417,6 @@ class CPrettyTable : CNonCopyable
   bool m_has_header;
   std::string m_caption;
 };
-
 
 #ifdef PRETTY_TABLE_DEBUG
 int main()
