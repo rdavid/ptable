@@ -3,12 +3,12 @@ SPDX-FileCopyrightText: 2026 David Rabkin
 SPDX-License-Identifier: 0BSD
 -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-  <g fill="none" stroke="#2b2b2b" stroke-width="5.2" stroke-linecap="round" stroke-linejoin="round">
-    <rect x="3.5" y="5" width="17" height="14" rx="2"/>
-    <line x1="3.5" y1="10.5" x2="20.5" y2="10.5"/>
-  </g>
-  <g fill="none" stroke="#8cd0d3" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
-    <rect x="3.5" y="5" width="17" height="14" rx="2"/>
-    <line x1="3.5" y1="10.5" x2="20.5" y2="10.5"/>
+  <g stroke-width="2.4" stroke-linecap="round">
+    <line x1="5" y1="7" x2="10" y2="7" stroke="#9fc59f"/>
+    <line x1="5" y1="12" x2="8" y2="12" stroke="#9fc59f"/>
+    <line x1="5" y1="17" x2="11" y2="17" stroke="#9fc59f"/>
+    <line x1="16" y1="7" x2="19" y2="7" stroke="#f0dfaf"/>
+    <line x1="14" y1="12" x2="19" y2="12" stroke="#f0dfaf"/>
+    <line x1="17" y1="17" x2="19" y2="17" stroke="#f0dfaf"/>
   </g>
 </svg>
