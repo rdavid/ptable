@@ -20,7 +20,7 @@ defaults:
     shell: sh
 env:
   CM_BIN: /usr/local/bin/checkmake
-  CM_URL: https://github.com/checkmake/checkmake/releases/download/v0.3.2/checkmake-v0.3.2.linux.amd64 # yamllint disable-line
+  CM_VER: 0.3.2
 jobs:
   checkmake:
     runs-on: ubuntu-24.04
@@ -33,15 +33,16 @@ jobs:
         uses: actions/cache@v6.1.0
         with:
           path: ${{ env.CM_BIN }}
-          key: checkmake-0.3.2-${{ runner.os }}
+          key: checkmake-${{ env.CM_VER }}-${{ runner.os }}
       - if: steps.cache.outputs.cache-hit != 'true'
         run: |
+          srv=https://github.com/checkmake/checkmake/releases/download
           sudo curl \
             --fail \
             --location \
             --output "$CM_BIN" \
             --show-error \
             --silent \
-            "$CM_URL"
+            "$srv/v$CM_VER/checkmake-v$CM_VER.linux.amd64"
           sudo chmod +x "$CM_BIN"
       - run: $CM_BIN Makefile

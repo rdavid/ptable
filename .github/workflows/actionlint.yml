@@ -18,6 +18,8 @@ concurrency:
 defaults:
   run:
     shell: sh
+env:
+  AL_VER: 1.7.12
 jobs:
   actionlint:
     runs-on: ubuntu-24.04
@@ -30,16 +32,15 @@ jobs:
         uses: actions/cache@v6.1.0
         with:
           path: ./actionlint
-          key: actionlint-1.7.12-${{ runner.os }}
+          key: actionlint-${{ env.AL_VER }}-${{ runner.os }}
       - if: steps.cache.outputs.cache-hit != 'true'
         run: |
           srv=https://raw.githubusercontent.com/rhysd/actionlint
-          ver=1.7.12
           curl \
             --fail \
             --location \
-            --silent \
             --show-error \
-            "$srv/v$ver/scripts/download-actionlint.bash" |
-            bash -s "$ver"
+            --silent \
+            "$srv/v$AL_VER/scripts/download-actionlint.bash" |
+            bash -s "$AL_VER"
       - run: ./actionlint
