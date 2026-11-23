@@ -1,5 +1,6 @@
-# SPDX-FileCopyrightText: 2023-2025 David Rabkin
+# SPDX-FileCopyrightText: 2023-2026 David Rabkin
 # SPDX-License-Identifier: 0BSD
 [default.extend-words]
+fle = "fle"
 nd = "nd"
 noet = "noet"

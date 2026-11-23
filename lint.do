@@ -1,4 +1,3 @@
-# shellcheck shell=sh
 # vi: lbr noet sw=2 ts=2 tw=79 wrap
 # SPDX-FileCopyrightText: 2023-2026 David Rabkin
 # SPDX-License-Identifier: 0BSD
@@ -11,22 +10,23 @@
 # hands any further operands to it as positional parameters, so files after
 # the first would be silently skipped rather than checked.
 #
-# Silences shellcheck warnings about unused variables and sourced files:
-#  shellcheck disable=SC2034,SC1091
+# Sets the shellcheck dialect, since the file has no shebang, and silences
+# warnings about unused variables and sourced files:
+#  shellcheck shell=sh disable=SC2034,SC1091
 redo-ifchange \
 	./.github/*.yml \
 	./.github/workflows/*.yml \
 	./*.do \
 	./Makefile
 readonly \
-	BASE_APP_VERSION=0.9.20261025 \
+	BASE_APP_VERSION=0.9.20261123 \
 	BASE_MIN_VERSION=0.9.20260707
 . base.sh
 cmd_runif actionlint
 cmd_runif checkmake ./Makefile
-for f in ./*.do; do
-	cmd_runif dash -n "$f"
-	cmd_runif mksh -n "$f"
+for FLE in ./*.do; do
+	cmd_runif dash -n "$FLE"
+	cmd_runif mksh -n "$FLE"
 done
 cmd_runif reuse lint
 cmd_runif shellcheck ./*.do

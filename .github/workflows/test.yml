@@ -39,7 +39,7 @@ jobs:
           persist-credentials: false
       - if: runner.os == 'Linux'
         run: |
-          g++ -std=c++03 -Wall -Werror -pedantic -o app main.cpp
+          g++ -Wall -Werror -o app -pedantic -std=c++03 main.cpp
           ./app 2>app.log >/dev/null
           diff expected.log app.log
       - if: runner.os == 'macOS'
