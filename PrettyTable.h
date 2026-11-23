@@ -1,22 +1,23 @@
-// PrettyTable.h
 // SPDX-FileCopyrightText: 2015-2026 David Rabkin
 // SPDX-License-Identifier: 0BSD
+//
+// Prints string and numeric data as an aligned, sortable table. The template
+// requires only the standard library and AlphaNum.h.
 
 #ifndef PRETTY_TABLE_H_
 #define PRETTY_TABLE_H_
 
-#include <list>
-#include <string>
-#include <vector>
-#include <limits>
-#include <iomanip>
-#include <sstream>
-#include <numeric>
-#include <iterator>
 #include <algorithm>
 #include <functional>
+#include <iomanip>
+#include <iterator>
+#include <limits>
+#include <list>
+#include <numeric>
+#include <sstream>
+#include <string>
+#include <vector>
 #include "AlphaNum.h"
-//#define PRETTY_TABLE_DEBUG 1
 #ifdef PRETTY_TABLE_DEBUG
   #include <iostream>
 #endif
@@ -114,6 +115,10 @@ template<typename T01=PrettyTableStubType,
          typename T20=PrettyTableStubType>
 class CPrettyTable : CNonCopyable
 {
+  typedef std::pair<std::string, bool> Val;
+  typedef std::vector<Val> Raw;
+  typedef std::list<Raw> DB;
+
  public:
   // Creates a table without a header row.
   CPrettyTable() : m_has_header(false) {}
@@ -145,7 +150,7 @@ class CPrettyTable : CNonCopyable
         p01, p02, p03, p04, p05, p06, p07, p08, p09, p10,
         p11, p12, p13, p14, p15, p16, p17, p18, p19, p20
     };
-    std::vector<Val> row;
+    Raw row;
     row.reserve(ARRAYSIZE(names));
     for (const char** name = names;
          name != ARRAYEND(names) && NULL != *name;
@@ -180,7 +185,7 @@ class CPrettyTable : CNonCopyable
            const T19& p19 = PrettyTableStubType(),
            const T20& p20 = PrettyTableStubType())
   {
-    std::vector<Val> row;
+    Raw row;
     row.reserve(20);
     AddCell(row, p01);
     AddCell(row, p02);
@@ -254,7 +259,7 @@ class CPrettyTable : CNonCopyable
     {
       if (row->size() > lens.size())
         lens.insert(lens.end(), row->size() - lens.size(), 0);
-      std::vector<Val>::const_iterator col;
+      Raw::const_iterator col;
       for (col = row->begin(); col != row->end(); ++col)
       {
         unsigned int pos = row->size() - std::distance(col, row->end());
@@ -298,8 +303,7 @@ class CPrettyTable : CNonCopyable
   {
    public:
     RowCmp(unsigned int c, ePrettyTableSortOrder o) : m_col(c), m_order(o) {}
-    bool operator()(const std::vector<std::pair<std::string, bool> >& lhs,
-                    const std::vector<std::pair<std::string, bool> >& rhs) const
+    bool operator()(const Raw& lhs, const Raw& rhs) const
     {
       if (m_col >= lhs.size() || m_col >= rhs.size())
         return true;
@@ -317,7 +321,7 @@ class CPrettyTable : CNonCopyable
   // is_specialized=true and become right-aligned. Other types, such as
   // strings, stay left-aligned.
   template<typename T>
-  void AddCell(std::vector<std::pair<std::string, bool> >& row, const T& p)
+  void AddCell(Raw& row, const T& p)
   {
     if (sizeof(PrettyTableStubType) == sizeof(T))
       return;
@@ -328,12 +332,12 @@ class CPrettyTable : CNonCopyable
   }
 
   // Prints one row on a new line and pads each cell to its column width.
-  void PrintRow(std::list<std::vector<std::pair<std::string, bool> > >::const_reference row,
-                 const std::vector<unsigned int>& lens,
-                 std::ostream& out) const
+  void PrintRow(const Raw& row,
+                const std::vector<unsigned int>& lens,
+                std::ostream& out) const
   {
     out << std::endl << '|';
-    std::vector<Val>::const_iterator col = row.begin();
+    Raw::const_iterator col = row.begin();
     std::vector<unsigned int>::const_iterator len = lens.begin();
     for ( ; col != row.end() && len != lens.end(); ++col, ++len)
       out << " "
@@ -408,10 +412,6 @@ class CPrettyTable : CNonCopyable
         << caption
         << std::string(line, gap+caption.length());
   }
-
-  typedef std::pair<std::string, bool> Val;
-  typedef std::vector<Val> Raw;
-  typedef std::list<Raw> DB;
 
   DB m_db;
   bool m_has_header;
