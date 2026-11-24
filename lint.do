@@ -37,7 +37,9 @@ cmd_runif lychee \
 	./README.adoc
 cmd_runif reuse lint
 cmd_runif shellcheck ./*.do
-cmd_runif shfmt -d ./*.do
+cmd_runif shfmt \
+	--diff \
+	./*.do
 cmd_runif typos
 cmd_runif yamllint \
 	./.github/*.yml \
