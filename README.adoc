@@ -23,6 +23,7 @@
 :url-shellcheck: https://www.shellcheck.net/
 :url-shfmt: https://github.com/mvdan/sh
 :url-test: https://github.com/rdavid/ptable/actions/workflows/test.yml
+:url-tombi: https://tombi-toml.github.io/tombi/
 :url-typos: https://github.com/crate-ci/typos
 :url-yamllint: https://yamllint.readthedocs.io/
 :url-zizmor: https://docs.zizmor.sh/
@@ -249,6 +250,7 @@ recorded golden file.
 {url-reuse}[`reuse`],
 {url-shellcheck}[`shellcheck`],
 {url-shfmt}[`shfmt`],
+{url-tombi}[`tombi`],
 {url-typos}[`typos`],
 {url-yamllint}[`yamllint`],
 {url-zizmor}[`zizmor`].

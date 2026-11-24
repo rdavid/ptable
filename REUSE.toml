@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: 2025-2026 David Rabkin
 # SPDX-License-Identifier: 0BSD
 version = 1
+
 [[annotations]]
 path = ["expected.log"]
 precedence = "override"

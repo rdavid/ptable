@@ -18,6 +18,7 @@ redo-ifchange \
 	./.github/pages/README-docinfo.html \
 	./.github/workflows/*.yml \
 	./*.do \
+	./*.toml \
 	./Makefile \
 	./README.adoc
 readonly \
@@ -40,6 +41,11 @@ cmd_runif shellcheck ./*.do
 cmd_runif shfmt \
 	--diff \
 	./*.do
+cmd_runif tombi lint \
+	./*.toml
+cmd_runif tombi format \
+	--check \
+	./*.toml
 cmd_runif typos
 cmd_runif yamllint \
 	./.github/*.yml \
