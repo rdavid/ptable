@@ -14,6 +14,7 @@
 :url-checkmake: https://github.com/checkmake/checkmake
 :url-goredo: http://www.goredo.stargrave.org/INSTALL.html
 :url-hoc: https://hitsofcode.com/view/github/rdavid/ptable?branch=master
+:url-lychee: https://lychee.cli.rs/
 :url-license: https://github.com/rdavid/ptable/blob/master/LICENSES/0BSD.txt
 :url-pages: https://rdavid.github.io/ptable/
 :url-redo: https://cr.yp.to/redo.html
@@ -244,6 +245,7 @@ recorded golden file.
 `redo lint` applies the following linters to the source files:
 {url-actionlint}[`actionlint`],
 {url-checkmake}[`checkmake`],
+{url-lychee}[`lychee`],
 {url-reuse}[`reuse`],
 {url-shellcheck}[`shellcheck`],
 {url-shfmt}[`shfmt`],

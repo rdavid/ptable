@@ -15,11 +15,13 @@
 #  shellcheck shell=sh disable=SC2034,SC1091
 redo-ifchange \
 	./.github/*.yml \
+	./.github/pages/README-docinfo.html \
 	./.github/workflows/*.yml \
 	./*.do \
-	./Makefile
+	./Makefile \
+	./README.adoc
 readonly \
-	BASE_APP_VERSION=0.9.20261123 \
+	BASE_APP_VERSION=0.9.20261124 \
 	BASE_MIN_VERSION=0.9.20260707
 . base.sh
 cmd_runif actionlint
@@ -28,6 +30,11 @@ for FLE in ./*.do; do
 	cmd_runif dash -n "$FLE"
 	cmd_runif mksh -n "$FLE"
 done
+cmd_runif lychee \
+	--no-progress \
+	--offline \
+	./.github/pages/README-docinfo.html \
+	./README.adoc
 cmd_runif reuse lint
 cmd_runif shellcheck ./*.do
 cmd_runif shfmt -d ./*.do
