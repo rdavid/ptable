@@ -6,6 +6,7 @@ name: tombi
   pull_request:
     paths: &paths
       - '*.toml'
+      - .github/workflows/tombi.yml
   push:
     branches: [master]
     paths: *paths

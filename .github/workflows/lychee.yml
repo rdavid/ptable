@@ -9,6 +9,7 @@ name: lychee
   pull_request:
     paths: &paths
       - .github/pages/**
+      - .github/workflows/lychee.yml
       - README.adoc
   push:
     branches: [master]

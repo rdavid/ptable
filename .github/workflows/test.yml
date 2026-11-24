@@ -6,8 +6,15 @@
 name: test
 'on':
   pull_request:
+    paths: &paths
+      - '*.cpp'
+      - '*.do'
+      - '*.h'
+      - .github/workflows/test.yml
+      - expected.log
   push:
     branches: [master]
+    paths: *paths
   workflow_dispatch:
 permissions:
   contents: read
